@@ -1,197 +1,368 @@
-# ATELIER HIDE — Premium Interactive Leather Atelier
-### Handmade Leather Goods and Custom Monogram Bag Showcase
-**College Project — CSE326 Frontend Development Showcase**
+# ATELIER HIDE
+### Premium Interactive Leather Goods & Customization Studio
+
+**CSE326 – Frontend Development Project**
+
+ATELIER HIDE is a luxury leather goods showcase and interactive product customization website. It allows visitors to explore handcrafted leather products, select materials and hardware, personalize products with initials or messages, and preview their designs using an interactive 3D interface.
+
+The project demonstrates how HTML, CSS, and JavaScript can be used to create a visually rich, interactive, and responsive e-commerce experience.
 
 ---
 
-## 01. Overview
+## 1. Project Overview
 
-**ATELIER HIDE** is a digital flagship store and interactive bespoke product studio for an independent luxury leather goods atelier based in Bengaluru, India. 
+ATELIER HIDE is designed as a digital storefront for a premium handcrafted leather goods brand based in Bengaluru, India.
 
-The website balances editorial art direction, quiet luxury aesthetics, and client-side frontend engineering using **pure HTML5, CSS3, and modern vanilla JavaScript (ES6+)** with zero third-party framework dependencies.
+The website focuses on three main ideas:
+
+- **Product Showcase:** Presenting leather products through an elegant product collection.
+- **Customization:** Allowing users to personalize products with different leather finishes, hardware, and monograms.
+- **Interactive Experience:** Providing product previews, animations, and a 3D customization studio.
+
+### Project Objectives
+
+1. Develop a responsive and visually appealing website.
+2. Demonstrate practical HTML, CSS, and JavaScript skills.
+3. Implement interactive product customization.
+4. Understand DOM manipulation and JavaScript event handling.
+5. Explore 3D product rendering using Three.js.
+6. Build a functional client-side shopping cart.
 
 ---
 
-## 02. Project Structure
+## 2. Technologies Used
 
-```
+| Technology | Purpose |
+|---|---|
+| HTML5 | Website structure and content |
+| CSS3 | Styling, layouts, animations, and responsiveness |
+| JavaScript (ES6+) | Interactions, application logic, and customization |
+| Three.js | Interactive 3D product rendering |
+| OrbitControls | 3D camera rotation and movement |
+| Canvas API | Dynamic monogram and leather texture generation |
+| LocalStorage | Saving cart information in the browser |
+
+**Architecture:** Frontend-only application using HTML, CSS, and vanilla JavaScript, without a frontend framework or backend database.
+
+Three.js is included locally in the project to avoid relying on an external CDN.
+
+---
+
+## 3. Project Folder Structure
+
+```text
 CSE326 PROJECT/
-├── index.html                  # Semantic, accessible HTML5 document with 3D WebGL canvases
-├── styles.css                  # Design tokens, CSS custom properties, shaders, 3D card tilt & responsive styles
-├── script.js                   # Application state machine, Three.js 3D engine, customizer, cart & modals
-├── test-suite.js               # Automated verification and structural test suite (25 assets & scripts)
-├── test-interactions.js        # Deep interaction, cart simulation, and user journey test suite (15/15 passed)
-├── test-3d.js                  # 3D WebGL engine, procedural bump textures & dynamic monogram test suite (13/13 passed)
-├── test-browser.js             # Automated headless browser DOM verification script
-├── README.md                   # Project documentation and presentation guide
+│
+├── index.html
+│   └── Main website structure
+│
+├── styles.css
+│   └── Website design, layouts and responsive styling
+│
+├── script.js
+│   └── JavaScript functionality and 3D customization
+│
+├── README.md
+│   └── Project documentation
+│
+├── PROJECT_GUIDE.md
+│   └── Student-friendly project explanation
+│
+├── test-suite.js
+│   └── Structural verification tests
+│
+├── test-interactions.js
+│   └── Interaction and shopping cart tests
+│
+├── test-3d.js
+│   └── 3D functionality tests
+│
+├── test-browser.js
+│   └── Browser rendering tests
+│
 └── assets/
-    ├── vendor/
-    │   ├── three.min.js               # Three.js r128 (vendored locally for 100% offline execution)
-    │   └── OrbitControls.js           # Three.js OrbitControls (smooth camera orbit & damping)
+    │
+    ├── images/
+    │   └── Product, branding and craftsmanship images
+    │
     ├── textures/
-    │   ├── leather-grain.svg          # Tileable natural full-grain leather pore texture
-    │   └── crazy-horse-distress.svg   # Waxed nubuck patina & distress noise texture
-    └── images/
-        ├── product-handbag.svg        # The Structured Handbag No. 01 interactive vector plate
-        ├── product-bifold.svg         # The Everyday Bifold interactive vector plate
-        ├── product-messenger.svg      # The Field Messenger interactive vector plate
-        ├── product-passport.svg       # The Passport Companion interactive vector plate
-        ├── product-weekender.svg      # The Weekender No. 01 interactive vector plate
-        ├── hero-campaign.svg          # Cinematic hero structured handbag with gold monogram clochette
-        ├── brand-philosophy.svg       # Atelier crest & Tuscan hide editorial composition
-        ├── leather-full-grain.svg     # Full-grain vegetable tanned macro plate
-        ├── leather-pull-up.svg        # Tuscan pull-up aniline macro plate
-        ├── leather-crazy-horse.svg    # Waxed crazy horse nubuck macro plate
-        ├── leather-matte.svg          # Nordic matte pebble macro plate
-        ├── craft-cutting.svg          # Stage 01: Hand clicking & grain calibration
-        ├── craft-stitching.svg        # Stage 02: Traditional two-needle saddle stitching
-        ├── craft-burnishing.svg       # Stage 03: Beeswax friction edge burnishing
-        ├── craft-hardware.svg         # Stage 04: Solid sand-cast brass hardware & copper rivets
-        ├── craft-stamping.svg         # Stage 05: Heated foundry type & 22k gold foil hot stamping
-        └── craft-conditioning.svg     # Stage 06: Bench inspection & organic balm conditioning
+    │   └── Leather texture assets
+    │
+    └── vendor/
+        ├── three.min.js
+        └── OrbitControls.js
 ```
 
 ---
 
-## 03. Core Features & User Interactions
+## 4. Main Website Features
 
-### 0. The Immersive 3D Digital Leather Atelier (Signature 3D Experience)
-- **Authentic Three.js WebGL Engine**: Fully offline 3D rendering powered by locally vendored Three.js r128 and OrbitControls with zero external CDN dependencies.
-- **Hero 3D Cinematic Centerpiece**:
-  - Interactive 3D model of **The Structured Handbag No. 01** in Heritage Cognac leather featuring a structured trapezoidal silhouette, hand-molded gussets, sculpted front flap, solid sand-cast brass turn-lock clasp mechanism, arched rolled top handles, side D-rings, protective base studs, and a dangling monogram clochette.
-  - Studio 3-point directional lighting (warm key light, cool fill light, amber rim light) plus soft contact shadow plane.
-  - Drag-to-rotate 360° inspection, subtle floating/breathing animation, and gentle mouse parallax tracking (`lerp`).
-  - Seamless fallback to high-resolution vector artwork (`assets/images/hero-campaign.svg`) if WebGL is unsupported.
-- **3D Customizer Studio Viewport**:
-  - Genuine WebGL 3D viewport rendered directly onto `#studio-3d-canvas`.
-  - Five distinct procedural 3D models engineered from Three.js geometries:
-    - *The Structured Handbag No. 01* (Trapezoidal body, front flap, turn-lock clasp, arched top handles, base studs, hanging clochette).
-    - *The Weekender No. 01* (Cylindrical barrel, end caps, rolled handles, hanging tag).
-    - *The Field Messenger No. 02* (Structured compartment, overlapping front flap, twin roller buckles, briefcase handle).
-    - *The Minimalist Bifold No. 03* (Slightly opened dual leaves, spine crease, interior card tier slots).
-    - *The Folio Passport Sleeve No. 04* (Slim book folio, creased spine, retention strap with brass snap button).
-  - **Procedural Leather Bump Map Generator**: Dynamically synthesizes an in-memory 256×256 micro-pore normal/bump texture with organic grain pore noise and crease streaks, giving tactile micro-relief under grazing light without heavy image assets.
-  - **Real-Time Dynamic Monogram Texture Projection**: Generates an offscreen 512×512 canvas texture mapped to the product's monogram surface, rendering either **Initials** or **Full Name** with authentic 22k Gold Foil metallic shaders or physical Blind Deboss inset depth.
-  - **Instant Material Synchronization**: Changing leather finish, hardware metal (Antique Brass vs Brushed Silver), typography, or deboss style immediately updates the 3D model in real time.
-  - **Studio Controls**: OrbitControls with smooth damping and a one-click **"Reset Angle"** button returning the camera to the default editorial viewpoint.
-- **Collection Showcase 3D Card Tilt & Specular Glare (Section E)**:
-  - Interactive 3D perspective tilt (`perspective(1000px) rotateX(...) rotateY(...) scale3d(1.02, 1.02, 1.02)`) on pointer movement over catalog cards.
-  - Dynamic specular glare sheen (`.card-glare`) with radial gold gradient tracking cursor position across the card surface.
+### A. Homepage and Hero Section
 
-### 1. The Custom Studio (Full-Width Workstation & Two-Column Layout)
-- **Balanced Full-Width Workstation**: Architected with a full-width container (`max-width: min(1560px, 95vw)`) and a luxury 54% product preview to 46% customization panel split (`minmax(0, 1.16fr) minmax(0, 1fr)`) with an organic `clamp(28px, 3.2vw, 52px)` column gap, eliminating unintended blank space and ensuring balanced proportions across laptop and desktop screens.
-- **Sticky Product Visualizer**: The left preview column remains smoothly sticky as users scroll through configuration steps, showcasing a grand preview stage (`aspect-ratio: 16 / 11; min-height: 440px`).
-- **Product Silhouette Selection**: Switch seamlessly between *The Structured Handbag* (₹28,500), *The Everyday Bifold* (₹4,800), *The Field Messenger* (₹18,500), *The Passport Companion* (₹3,200), and *The Weekender No. 01* (₹26,000) with dynamic model description updates (`#preview-model-desc`).
-- **Dual Presentation Engine**: High-fidelity 2D handcrafted vector preview silhouette with instant monogram and inscription reaction, plus an optional interactive 3D WebGL Orbit inspection mode toggle.
-- **Five Tactile Leather Finishes**: *Full-Grain Tan*, *Pull-Up Cognac*, *Espresso*, *Matte Black*, and *Crazy Horse*. Each finish dynamically updates CSS custom property color shaders across the product silhouette. Fully resilient for both `crazy` and `crazy-horse` identifiers.
-- **Solid Hardware Finishes**: Choose between *Antique Brass* and *Brushed Silver*, reflected live on turn-locks, buckles, rivets, and zipper details.
-- **Customer Name & Initials Personalization**:
-  - Full customer name input (up to 30 characters) with real-time character counter.
-  - Interactive mode toggle: Select between **Custom Initials** (compact 1–4 char monogram) or **Full Name Stamping**.
-  - Adaptive font scaling (`clamp()`) to ensure full names fit naturally on product clochettes, luggage tags, or stamps.
-- **Live Monogram & Inscription Preview**:
-  - Dynamic exterior monogram stamping positioned specifically for each silhouette (handbag clochette, bifold corner, messenger flap, passport lower center, weekender luggage tag).
-  - Interior pocket ribbon preview for personal messages and dates.
-- **Custom Inscription / Personal Message**:
-  - Optional field for sentimental dedications (e.g., *"Made for Dad"*, *"Forever & Always"*, or milestone dates; up to 60 chars).
-  - Displays live inside an interior leather ribbon preview in the Custom Studio.
-- **Mission Space / Note to the Maker**:
-  - Dedicated multiline area (up to 200 chars) for personal stories, heirloom intentions, or workshop instructions.
-  - Transparently separated from stamped inscriptions: stored as an artisan note and itemized in cart & checkout.
-- **Embossing Physics**:
-  - *Blind Embossing*: Natural deep press deboss with realistic multi-layer inset shadows and bottom edge highlight (Included at ₹0).
-  - *22k Gold Foil*: Lustrous metallic gold leaf gradient with specular shimmer (+₹600 artisan surcharge).
-- **Three Typographic Styles**: *Classic Serif*, *Modern Sans*, and *Architectural Initials*.
-- **Deterministic Live Pricing**: Base price updates immediately with transparent surcharge breakdown.
-- **Studio Lighting Mode**: Toggle between crisp *Daylight* and moody *Workshop Warmth*.
+- Luxury-inspired website design.
+- Editorial headline and product presentation.
+- Interactive 3D handbag centerpiece.
+- Collection and customization navigation.
+- Animated elements and visual effects.
 
-### 2. Functional Client-Side Shopping Bag
-- **Cart Management**: Add products from either the catalog or the custom studio.
-- **Smart Line-Item Differentiation**: Identical configurations merge quantities, while distinct customizations (different leather, initials, hardware, or foil) remain distinct line items.
-- **Live Counter & Subtotal**: Quantity increment/decrement (`+` / `−`), individual item deletion, and real-time subtotal in Indian Rupees (₹).
-- **Persistent Storage**: Utilizes browser `localStorage` (`atelier_hide_cart_v2`) to preserve cart state across page reloads.
-- **Free Shipping Progress**: Real-time complimentary courier notification for orders across India.
-- **Empty State**: Tailored empty cart UI with an instant return-to-collection CTA.
+### B. Product Collection
 
-### 3. Demonstration Checkout Experience
-- Opens a dedicated simulated checkout modal.
-- Prominent academic demonstration notice explaining that no real financial transactions occur.
-- Full delivery address form (Name, Email, Phone, Address, City, Pincode).
-- Simulated confirmation state generating a unique order tracking code (e.g., `AH-2026-8942`).
+The website features five product categories:
 
-### 4. Interactive Live Search Modal
-- Accessible via the search icon or keyboard shortcut (`/`).
-- Real-time instant filtering across product names, categories, leather types, and descriptions.
-- Quick filter pills (*All*, *Wallets*, *Bags*, *Travel*, *Full-Grain*).
-- Instant click-through to open product details.
+| Product | Displayed Price |
+|---|---:|
+| Structured Handbag No. 01 | ₹28,500 |
+| Everyday Bifold | ₹4,800 |
+| Field Messenger | ₹18,500 |
+| Passport Companion | ₹3,200 |
+| Weekender No. 01 | ₹26,000 |
 
-### 5. Product Details Modal
-- High-resolution visual plate with switchable finish details.
-- Technical specifications table (Dimensions, Weight, Capacity, Leather tannage, Hardware specs, Care instructions).
-- Direct CTAs to configure in Custom Studio or add standard unmonogrammed edition to bag.
-- Accessible via Escape key, close button, or backdrop click.
+Product cards include visual previews, product details, and customization options.
 
-### 6. Editorial Leather Guide & Interactive Patina Timeline
-- Deep-dive into *Full-Grain*, *Pull-Up*, *Crazy Horse*, and *Matte Pebble*.
-- Interactive tabbed switcher with macro grain visuals and care recommendations.
-- **Interactive Patina Timeline Engine**:
-  - Live stage switcher: **Day 1: Fresh Bench**, **Year 1: Settled Hue**, and **Year 5+: Heirloom Gold**.
-  - Dynamic macro visual plate showing realistic grain softening, burnish depth, and color shifts.
-  - Interactive specification grid reporting micro-metrics (oil migration, depth, surface tactile rating, and recommended maintenance).
-- Sourcing integrity and authenticity verification advice.
+### C. Interactive Customization Studio
 
-### 7. Artisan Craftsmanship Story
-- 6-step workshop breakdown illustrating the complete journey from raw hide selection to final beeswax conditioning.
+The customization studio allows visitors to configure their leather products.
 
-### 8. Accessibility & Performance
-- Semantic HTML5 structure with accessible ARIA attributes.
-- Keyboard accessible controls with visible focus rings (`:focus-visible`).
-- Supports `prefers-reduced-motion` for users sensitive to motion.
-- Fully responsive from 320px mobile screens to large desktop monitors.
+**Leather selection:**
+- Full-Grain Tan
+- Pull-Up Cognac
+- Espresso
+- Matte Black
+- Crazy Horse
+
+**Hardware selection:**
+- Antique Brass
+- Brushed Silver
+
+**Personalization:**
+- Custom initials.
+- Full-name stamping.
+- Personal messages.
+- Custom notes to the maker.
+
+**Embossing options:**
+- Blind Deboss.
+- 22k Gold Foil.
+
+**Typography:**
+- Classic Serif.
+- Modern Sans.
+- Architectural Initials.
+
+The product preview responds to supported customization selections.
+
+### D. 3D Product Visualization
+
+The website uses Three.js to create interactive 3D product previews.
+
+Features include:
+
+- Procedurally constructed product models.
+- 360-degree product rotation.
+- Interactive camera controls.
+- Dynamic material changes.
+- Leather bump texture generation.
+- Custom monogram rendering.
+- Gold foil and blind deboss visual effects.
+- Interactive lighting.
+
+The 3D system includes models for the handbag, weekender, messenger, bifold, and passport sleeve.
+
+### E. Shopping Cart
+
+The client-side shopping cart supports:
+
+- Adding products.
+- Increasing and decreasing quantities.
+- Removing products.
+- Calculating the subtotal.
+- Keeping different customizations as separate items.
+- Combining identical configurations.
+- Saving cart information using browser LocalStorage.
+
+### F. Demonstration Checkout
+
+The checkout interface includes:
+
+- Customer name.
+- Email address.
+- Phone number.
+- Delivery address.
+- City and PIN code.
+- Simulated order confirmation.
+
+**Note:** This is an academic checkout demonstration. It does not process real payments or represent a live order-management backend.
+
+### G. Search and Product Details
+
+- Interactive search modal.
+- Real-time product filtering.
+- Category filters.
+- Product detail modal.
+- Product specifications.
+- Care instructions.
+- Navigation to the customization studio.
+
+### H. Leather Guide
+
+The leather guide introduces different leather finishes and their characteristics.
+
+It includes:
+
+- Full-Grain Leather.
+- Pull-Up Leather.
+- Crazy Horse Leather.
+- Matte Pebble Leather.
+- Leather care information.
+- Interactive patina timeline.
+
+### I. Craftsmanship Section
+
+A six-stage visual explanation of leather craftsmanship:
+
+1. Leather cutting.
+2. Saddle stitching.
+3. Edge burnishing.
+4. Hardware installation.
+5. Monogram stamping.
+6. Conditioning and inspection.
 
 ---
 
-## 04. How to Launch & Test
+## 5. Important Technical Concepts
 
-1. Open `index.html` directly in any modern browser (Google Chrome, Microsoft Edge, Mozilla Firefox, or Safari).
-2. Alternatively, run a lightweight local static server:
-   ```bash
-   npx serve .
-   # or
-   python -m http.server 8000
-   ```
-3. To run the automated verification test suite:
-   ```bash
-   node test-suite.js          # Structural integrity & CSS/HTML tokens (25 assets & scripts, 43 IDs)
-   node test-interactions.js   # 15 deep user journeys, real DOM previews, cart state & motion triggers (15/15 passed)
-   node test-3d.js             # 3D WebGL engine, procedural bump textures & dynamic monogram test suite (13/13 passed)
-   node test-browser.js        # Headless browser DOM render assertion
-   ```
+The project demonstrates several frontend development concepts.
+
+| Concept | Application |
+|---|---|
+| HTML Semantics | Organizing website sections |
+| CSS Grid | Structuring product and customization layouts |
+| Flexbox | Aligning interface elements |
+| CSS Variables | Managing colours and design values |
+| Media Queries | Responsive website layouts |
+| DOM Manipulation | Updating content dynamically |
+| Event Listeners | Handling clicks and user interactions |
+| JavaScript Functions | Managing website operations |
+| LocalStorage | Preserving cart information |
+| Three.js | Rendering 3D products |
+| Canvas API | Creating dynamic textures and monograms |
 
 ---
 
-## 05. Verification Checklist
+## 6. How to Run the Project
 
-- [x] HTML5, CSS3, and ES6+ Vanilla JavaScript only (Zero frontend frameworks)
-- [x] Luxury Structured Leather Handbag flagship hero with structured trapezoidal body, sculpted flap, sand-cast brass turn-lock, arched rolled top handles, and hanging gold monogram clochette
-- [x] Redesigned Hero: Editorial headline, supporting copy, primary CTA "EXPLORE THE COLLECTION", secondary CTA "DESIGN YOUR PIECE", 3-point lighting 3D handbag, Motion trust bar, animated scroll indicator
-- [x] Full-Width Bespoke Custom Studio Workstation (`max-width: min(1560px, 95vw)`) with 54% Product Preview to 46% Customization Panel split and zero container overflow
-- [x] 5 Product Silhouettes fully operational: The Structured Handbag (₹28,500), The Everyday Bifold (₹4,800), The Field Messenger (₹18,500), The Passport Companion (₹3,200), and The Weekender No. 01 (₹26,000)
-- [x] Vendored Three.js r128 and OrbitControls locally for 100% offline capability (Zero CDN reliance)
-- [x] 3D Hero Handbag showcase with 360° drag rotation, floating animation, mouse parallax, and 3-point studio lighting
-- [x] 3D Customizer Studio with 5 procedural models (Handbag, Weekender, Messenger, Bifold, Passport)
-- [x] Procedural leather bump map generation in memory (256×256 micro-pore normal repeat)
-- [x] Dynamic monogram canvas texture engine projecting Full Name or Initials with 22k Gold Foil / Blind Deboss shaders
-- [x] Custom Studio: Product, finish, hardware, monogram, font, and emboss style reactive
-- [x] Full customer name personalization (up to 30 chars) with toggle between initials or full name stamping
-- [x] Custom personal message / inscription (up to 60 chars) with live interior ribbon preview
-- [x] Dedicated Mission Space / Note to Maker (up to 200 chars) itemized in cart & checkout
-- [x] Blind debossing vs Gold foil visibly differentiated (Gold foil ₹600 surcharge)
-- [x] Cart preserves distinct custom items, merges identical items, and persists in localStorage
-- [x] Interactive Patina Timeline with responsive stage viewer and technical spec grid
-- [x] Live search with keyword matching and quick filters
-- [x] Product details modal with technical specs and care instructions
-- [x] Demonstration checkout with simulated order confirmation
-- [x] Responsive layout with zero horizontal overflow down to mobile viewports
-- [x] Zero broken links (all internal anchors including `#announcement-bar` verified)
-- [x] Zero broken images (all assets locally bundled as high-resolution SVGs)
+### Requirements
+
+- A modern web browser.
+- Node.js (for running the optional test scripts and local server).
+- A code editor such as Visual Studio Code.
+
+### Method 1: Open Directly
+
+Open `index.html` in a modern browser.
+
+### Method 2: Run a Local Server
+
+Open the project folder in VS Code and run:
+
+```bash
+npx serve .
+```
+
+Alternatively:
+
+```bash
+python -m http.server 8000
+```
+
+Then visit:
+
+```text
+http://localhost:8000
+```
+
+---
+
+## 7. Testing
+
+The project includes JavaScript test scripts for checking its structure and functionality.
+
+Run the following commands from the project directory:
+
+```bash
+node test-suite.js
+```
+
+Checks structural integrity and project assets.
+
+```bash
+node test-interactions.js
+```
+
+Tests user interactions, shopping cart behaviour, and related functionality.
+
+```bash
+node test-3d.js
+```
+
+Tests the 3D rendering system, texture generation, and monogram functionality.
+
+```bash
+node test-browser.js
+```
+
+Runs browser-based DOM verification.
+
+**Previously recorded test results:**
+- Interaction tests: 15/15 passed.
+- 3D tests: 13/13 passed.
+
+Run the scripts again to verify the current project state.
+
+---
+
+## 8. Project Limitations
+
+The current implementation is primarily frontend-based.
+
+- Product information is currently managed on the client side.
+- Cart persistence uses browser LocalStorage.
+- Checkout is simulated.
+- No real payment gateway is connected.
+- No live order-management database is currently integrated.
+- User authentication and server-side administration are not part of the current frontend implementation.
+
+These features can be added through a backend integration in future development.
+
+---
+
+## 9. Future Improvements
+
+Possible future developments include:
+
+1. Firebase Authentication for user accounts.
+2. Cloud Firestore for product and order management.
+3. Firebase Storage for product images.
+4. Persistent user shopping carts.
+5. Secure admin dashboard.
+6. Real payment gateway integration.
+7. Order tracking and customer accounts.
+8. Improved product visualization and additional 3D models.
+
+---
+
+## 10. Conclusion
+
+ATELIER HIDE demonstrates the use of frontend development technologies to create an interactive product showcase and customization experience.
+
+Through this project, we explored HTML structure, CSS styling, JavaScript programming, DOM manipulation, browser storage, responsive design, and 3D rendering using Three.js.
+
+The project combines technical implementation with visual design to demonstrate how modern frontend technologies can be applied to a premium e-commerce concept.
+
+---
+
+**Project:** ATELIER HIDE  
+**Course:** CSE326 – Frontend Development  
+**Development:** HTML5, CSS3, JavaScript and Three.js  
+**Project Type:** Academic Frontend Development Project
+
