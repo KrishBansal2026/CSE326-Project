@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tan-macro" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfb88c" />
+      <stop offset="40%" stop-color="#bd9367" />
+      <stop offset="80%" stop-color="#9a6e43" />
+      <stop offset="100%" stop-color="#734d26" />
+    </linearGradient>
+    <filter id="naturalPores" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="4" result="noise" />
+      <feColorMatrix type="matrix" values="0.2 0 0 0 0.1  0 0.2 0 0 0.08  0 0 0.2 0 0.05  0 0 0 0.25 0" in="noise" result="tintedNoise" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="tintedNoise" />
+    </filter>
+  </defs>
+  <rect width="600" height="450" fill="url(#tan-macro)" />
+  <rect width="600" height="450" fill="none" filter="url(#naturalPores)" opacity="0.75" />
+  <!-- Realistic Natural Hide Fat Wrinkles and Grain Arcs -->
+  <path d="M -50 120 Q 200 180 650 110" stroke="#68421c" stroke-width="3" fill="none" opacity="0.4" filter="blur(2px)" />
+  <path d="M -50 122 Q 200 182 650 112" stroke="#f0cfab" stroke-width="1.5" fill="none" opacity="0.3" filter="blur(1px)" />
+  <path d="M -20 280 Q 260 340 620 270" stroke="#68421c" stroke-width="2.5" fill="none" opacity="0.35" filter="blur(2px)" />
+  <path d="M -20 282 Q 260 342 620 272" stroke="#f0cfab" stroke-width="1.5" fill="none" opacity="0.25" filter="blur(1px)" />
+  <!-- Artisan Hot Stamped Gauge Stamp -->
+  <g transform="translate(430, 320)" opacity="0.6">
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#48290f" stroke-width="2" />
+    <circle cx="60" cy="60" r="44" fill="none" stroke="#48290f" stroke-width="0.8" stroke-dasharray="3 3" />
+    <text x="60" y="55" font-family="'Cormorant Garamond', Georgia, serif" font-size="11" text-anchor="middle" fill="#3a1f0a" letter-spacing="2">GRADE A</text>
+    <text x="60" y="72" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="8" text-anchor="middle" fill="#3a1f0a" letter-spacing="1">FULL GRAIN</text>
+  </g>
+</svg>

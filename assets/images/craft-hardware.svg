@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hw-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#241a14" />
+      <stop offset="100%" stop-color="#140e0b" />
+    </linearGradient>
+    <linearGradient id="solid-brass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7e4af" />
+      <stop offset="45%" stop-color="#caa45a" />
+      <stop offset="75%" stop-color="#9a752b" />
+      <stop offset="100%" stop-color="#5a4214" />
+    </linearGradient>
+    <linearGradient id="copper-rivet-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e89e7c" />
+      <stop offset="50%" stop-color="#b86948" />
+      <stop offset="100%" stop-color="#6e351d" />
+    </linearGradient>
+    <linearGradient id="anvil-steel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3a3f45" />
+      <stop offset="50%" stop-color="#555c63" />
+      <stop offset="100%" stop-color="#23272b" />
+    </linearGradient>
+  </defs>
+  <!-- Dark Workshop Bench Background -->
+  <rect width="600" height="450" fill="url(#hw-bg)" />
+
+  <!-- Bench Anvil Plate -->
+  <polygon points="120,380 480,380 440,290 160,290" fill="url(#anvil-steel)" stroke="#1a1c1e" stroke-width="2" />
+  <rect x="180" y="270" width="240" height="24" rx="3" fill="#6c747d" stroke="#333" stroke-width="1.5" />
+  <line x1="180" y1="272" x2="420" y2="272" stroke="#fff" opacity="0.3" stroke-width="1.5" />
+
+  <!-- Heavy Vegetable-Tanned Harness Strap -->
+  <rect x="230" y="90" width="80" height="260" rx="4" fill="#a9673f" stroke="#683416" stroke-width="2" filter="drop-shadow(4px 10px 15px rgba(0,0,0,0.6))" />
+  <line x1="240" y1="90" x2="240" y2="350" stroke="#f4efe6" stroke-width="2" stroke-dasharray="6 4" opacity="0.8" />
+  <line x1="300" y1="90" x2="300" y2="350" stroke="#f4efe6" stroke-width="2" stroke-dasharray="6 4" opacity="0.8" />
+
+  <!-- Sand-Cast Solid Brass Roller Buckle -->
+  <g transform="translate(270, 160)" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.65))">
+    <!-- Buckle Outer Frame -->
+    <rect x="-55" y="-35" width="110" height="70" rx="10" fill="none" stroke="url(#solid-brass-grad)" stroke-width="14" stroke-linecap="round" />
+    <!-- Center Roller Bar -->
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="url(#solid-brass-grad)" stroke-width="8" />
+    <!-- Buckle Tongue / Prong -->
+    <path d="M 0 0 L 0 -40 Q 0 -44 4 -44" fill="none" stroke="url(#solid-brass-grad)" stroke-width="7" stroke-linecap="round" />
+  </g>
+
+  <!-- Cold-Forged Solid Copper Rivets with Burr Washers -->
+  <g transform="translate(270, 240)">
+    <circle cx="0" cy="0" r="14" fill="url(#copper-rivet-grad)" stroke="#421a0a" stroke-width="1.5" filter="drop-shadow(2px 3px 5px rgba(0,0,0,0.5))" />
+    <circle cx="0" cy="0" r="8" fill="#e89e7c" opacity="0.8" />
+    <circle cx="-3" cy="-3" r="3" fill="#fff" opacity="0.6" />
+  </g>
+  <g transform="translate(270, 310)">
+    <circle cx="0" cy="0" r="14" fill="url(#copper-rivet-grad)" stroke="#421a0a" stroke-width="1.5" filter="drop-shadow(2px 3px 5px rgba(0,0,0,0.5))" />
+    <circle cx="0" cy="0" r="8" fill="#e89e7c" opacity="0.8" />
+    <circle cx="-3" cy="-3" r="3" fill="#fff" opacity="0.6" />
+  </g>
+
+  <!-- Solid Brass Rivet Setting Hand Tool -->
+  <g transform="translate(410, 140) rotate(16)" filter="drop-shadow(6px 12px 14px rgba(0,0,0,0.6))">
+    <rect x="-10" y="-70" width="20" height="150" rx="3" fill="url(#anvil-steel)" stroke="#1a1c1e" stroke-width="1.5" />
+    <rect x="-12" y="70" width="24" height="20" rx="2" fill="url(#solid-brass-grad)" />
+    <!-- Knurled grip lines -->
+    <line x1="-10" y1="-30" x2="10" y2="-30" stroke="#fff" opacity="0.2" />
+    <line x1="-10" y1="-10" x2="10" y2="-10" stroke="#fff" opacity="0.2" />
+    <line x1="-10" y1="10" x2="10" y2="10" stroke="#fff" opacity="0.2" />
+    <line x1="-10" y1="30" x2="10" y2="30" stroke="#fff" opacity="0.2" />
+  </g>
+
+  <!-- Editorial Stage Caption -->
+  <g transform="translate(60, 420)" opacity="0.65">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" fill="#dfd6cb" letter-spacing="2">STAGE 04 — SAND-CAST SOLID BRASS HARDWARE &amp; HAND-PEENED COPPER RIVETS</text>
+  </g>
+</svg>

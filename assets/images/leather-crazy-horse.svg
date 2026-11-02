@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="crazy-macro" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9d744a" />
+      <stop offset="35%" stop-color="#805b36" />
+      <stop offset="70%" stop-color="#644324" />
+      <stop offset="100%" stop-color="#4a3017" />
+    </linearGradient>
+    <filter id="velvetTexture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" result="velvet" />
+      <feColorMatrix type="matrix" values="0.15 0 0 0 0  0 0.15 0 0 0  0 0 0.15 0 0  0 0 0 0.35 0" in="velvet" result="nubuck" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="nubuck" />
+    </filter>
+  </defs>
+  <rect width="600" height="450" fill="url(#crazy-macro)" />
+  <rect width="600" height="450" fill="none" filter="url(#velvetTexture)" />
+  <!-- Authentic rub marks and wax streaks -->
+  <path d="M 60 80 Q 220 140 380 90" stroke="#cbb291" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.35" filter="blur(2px)" />
+  <path d="M 240 220 Q 420 280 540 210" stroke="#cbb291" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.3" filter="blur(3px)" />
+  <path d="M 120 310 Q 300 370 480 320" stroke="#36210f" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.4" filter="blur(2px)" />
+  <g transform="translate(60, 360)" opacity="0.75">
+    <text x="0" y="0" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-style="italic" fill="#ead8c3" letter-spacing="1">Waxed Nubuck (Crazy Horse)</text>
+    <text x="0" y="20" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9" fill="#ead8c3" letter-spacing="2">SELF-HEALING PATINA &amp; RUSTIC MARKS</text>
+  </g>
+</svg>

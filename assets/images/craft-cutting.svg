@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="workshop-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a1d17" />
+      <stop offset="100%" stop-color="#18110d" />
+    </linearGradient>
+    <linearGradient id="brass-ruler" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e8cf96" />
+      <stop offset="50%" stop-color="#a88952" />
+      <stop offset="100%" stop-color="#644e23" />
+    </linearGradient>
+    <linearGradient id="steel-blade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#b8bec4" />
+      <stop offset="100%" stop-color="#6b7278" />
+    </linearGradient>
+  </defs>
+  <!-- Cutting Mat Workshop Background -->
+  <rect width="600" height="450" fill="url(#workshop-bg)" />
+  <!-- Self-healing mat grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="75" x2="600" y2="75" />
+    <line x1="0" y1="150" x2="600" y2="150" />
+    <line x1="0" y1="225" x2="600" y2="225" />
+    <line x1="0" y1="300" x2="600" y2="300" />
+    <line x1="0" y1="375" x2="600" y2="375" />
+    <line x1="100" y1="0" x2="100" y2="450" />
+    <line x1="200" y1="0" x2="200" y2="450" />
+    <line x1="300" y1="0" x2="300" y2="450" />
+    <line x1="400" y1="0" x2="400" y2="450" />
+    <line x1="500" y1="0" x2="500" y2="450" />
+  </g>
+  <!-- Thick Full-Grain Hide Being Cut -->
+  <path d="M 60 400 L 80 80 Q 280 120 540 70 L 520 420 Z" fill="#bd9367" stroke="#875e35" stroke-width="3" />
+  <!-- Precision Cut Leather Panel Separating -->
+  <path d="M 220 100 L 480 90 L 460 380 L 200 390 Z" fill="#9a6e43" stroke="#68421c" stroke-width="2" />
+  <!-- Heavy Solid Brass Workshop Ruler -->
+  <rect x="175" y="60" width="35" height="360" rx="3" fill="url(#brass-ruler)" stroke="#4a3713" stroke-width="1.5" transform="rotate(-3 190 240)" filter="drop-shadow(4px 8px 12px rgba(0,0,0,0.5))" />
+  <!-- Japanese Leather Clicking Knife Blade -->
+  <g transform="translate(195, 210) rotate(-18)" filter="drop-shadow(3px 6px 8px rgba(0,0,0,0.6))">
+    <!-- Hardwood Handle -->
+    <rect x="-14" y="-120" width="28" height="120" rx="4" fill="#3d2012" stroke="#1d0d05" stroke-width="1.5" />
+    <rect x="-11" y="-10" width="22" height="12" fill="url(#brass-ruler)" />
+    <!-- White Steel Angled Blade -->
+    <path d="M -12 2 L 12 2 L 12 60 L -12 85 Z" fill="url(#steel-blade)" stroke="#474d53" stroke-width="1" />
+    <!-- Beveled cutting edge highlight -->
+    <line x1="-12" y1="85" x2="12" y2="60" stroke="#fff" stroke-width="1.5" />
+  </g>
+  <g transform="translate(60, 420)" opacity="0.6">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" fill="#dfd6cb" letter-spacing="2">STAGE 01 — HAND CLICKING &amp; CALIBRATED GRAIN ORIENTATION</text>
+  </g>
+</svg>

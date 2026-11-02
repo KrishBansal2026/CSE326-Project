@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 650" width="100%" height="100%" id="svg-passport">
+  <defs>
+    <linearGradient id="pass-leather-grad" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="var(--leather-base-light, #c99f74)" />
+      <stop offset="50%" stop-color="var(--leather-base-mid, #bd9367)" />
+      <stop offset="100%" stop-color="var(--leather-base-dark, #8f653b)" />
+    </linearGradient>
+
+    <filter id="pass-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#140d0a" flood-opacity="0.32" />
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#140d0a" flood-opacity="0.2" />
+    </filter>
+
+    <linearGradient id="pass-hw-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--hw-light, #e4cb93)" />
+      <stop offset="45%" stop-color="var(--hw-mid, #a88952)" />
+      <stop offset="100%" stop-color="var(--hw-dark, #5d461e)" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ground Shadow -->
+  <ellipse cx="400" cy="570" rx="260" ry="36" fill="#0c0705" opacity="0.3" filter="blur(16px)" />
+
+  <g filter="url(#pass-shadow)">
+    <!-- Pen Loop Tab on Right -->
+    <path d="M 570 270 Q 615 270 615 315 Q 615 360 570 360 Z" fill="url(#pass-leather-grad)" stroke="var(--leather-base-dark, #78532d)" stroke-width="2" />
+    <path d="M 570 278 Q 605 278 605 315 Q 605 352 570 352" fill="none" stroke="var(--stitch-color, #e0d0b8)" stroke-width="1.8" stroke-dasharray="5 4" />
+    <circle cx="585" cy="315" r="4.5" fill="url(#pass-hw-grad)" stroke="#20130a" stroke-width="1" />
+
+    <!-- Main Folio Body (Slightly tilted or centered vertical folio) -->
+    <rect x="230" y="80" width="340" height="490" rx="22" fill="url(#pass-leather-grad)" stroke="var(--leather-base-dark, #78532d)" stroke-width="2" />
+
+    <!-- Spine fold shadow on left edge -->
+    <rect x="230" y="80" width="18" height="490" rx="4" fill="#000" opacity="0.18" />
+    <line x1="248" y1="80" x2="248" y2="570" stroke="#fff" stroke-opacity="0.12" stroke-width="1.5" />
+
+    <!-- Perimeter Burnished Edge -->
+    <rect x="236" y="86" width="328" height="478" rx="18" fill="none" stroke="#26160e" stroke-width="1.5" stroke-opacity="0.5" />
+
+    <!-- Perimeter Saddle Stitching -->
+    <rect x="246" y="96" width="308" height="458" rx="14" fill="none" stroke="var(--stitch-color, #e0d0b8)" stroke-width="2.2" stroke-dasharray="6 4" stroke-linecap="round" opacity="0.85" />
+
+    <!-- Upper Embossed Atelier Crest -->
+    <g transform="translate(400, 200)" opacity="0.4">
+      <circle cx="0" cy="0" r="28" fill="none" stroke="#000" stroke-width="1.5" />
+      <path d="M -16 6 L 0 -18 L 16 6 M -10 -2 L 10 -2" stroke="#000" stroke-width="2" fill="none" />
+      <text x="0" y="44" font-family="'Cormorant Garamond', Georgia, serif" font-size="12" font-weight="600" text-anchor="middle" fill="#000" letter-spacing="3">PASSPORT</text>
+    </g>
+
+    <!-- Brass / Hardware Corner Protectors -->
+    <g transform="translate(230, 80)">
+      <path d="M 0 35 L 0 10 Q 0 0 10 0 L 35 0 Q 15 15 0 35 Z" fill="url(#pass-hw-grad)" stroke="#221208" stroke-width="1" />
+      <circle cx="12" cy="12" r="2.5" fill="#221208" />
+    </g>
+    <g transform="translate(570, 80)">
+      <path d="M 0 35 L 0 10 Q 0 0 -10 0 L -35 0 Q -15 15 0 35 Z" fill="url(#pass-hw-grad)" stroke="#221208" stroke-width="1" />
+      <circle cx="-12" cy="12" r="2.5" fill="#221208" />
+    </g>
+    <g transform="translate(570, 570)">
+      <path d="M 0 -35 L 0 -10 Q 0 0 -10 0 L -35 0 Q -15 -15 0 -35 Z" fill="url(#pass-hw-grad)" stroke="#221208" stroke-width="1" />
+      <circle cx="-12" cy="-12" r="2.5" fill="#221208" />
+    </g>
+    <g transform="translate(230, 570)">
+      <path d="M 0 -35 L 0 -10 Q 0 0 10 0 L 35 0 Q 15 -15 0 -35 Z" fill="url(#pass-hw-grad)" stroke="#221208" stroke-width="1" />
+      <circle cx="12" cy="-12" r="2.5" fill="#221208" />
+    </g>
+
+    <!-- Monogram Target Spot (Lower Center) -->
+    <g id="svg-monogram-target" transform="translate(400, 420)">
+      <!-- Centered stamping zone -->
+    </g>
+  </g>
+</svg>

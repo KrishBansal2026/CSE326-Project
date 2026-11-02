@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ATELIER HIDE — Premium handcrafted leather goods and interactive custom monogram bag studio. Made to be carried for life.">
+  <meta name="theme-color" content="#241813">
+  <title>KRISH BANSAL — Handcrafted Leather Goods & Custom Monogram Studio</title>
+
+  <!-- Typography: Google Fonts with local fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="assets/vendor/three.min.js"></script>
+  <script src="assets/vendor/OrbitControls.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Accessibility: Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- A. Announcement Strip -->
+  <aside class="announcement-bar" id="announcement-bar" aria-label="Atelier Announcement">
+    <div class="announcement-content">
+      <span class="announcement-badge">COMPLIMENTARY MONOGRAMMING</span>
+      <span class="announcement-dot">•</span>
+      <span>BESPOKE INITIALS EMBOSSED ON ALL ORDERS ACROSS INDIA</span>
+      <span class="announcement-dot">•</span>
+      <span>HANDMADE IN OUR BENGALURU ATELIER</span>
+    </div>
+  </aside>
+
+  <!-- B. Sticky Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <!-- Brand Wordmark -->
+      <a href="#" class="brand-wordmark" aria-label="Atelier Hide Home">
+        <span class="brand-wordmark-title">Atelier Hide</span>
+        <span class="brand-wordmark-sub">Leather Atelier</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#collection" class="nav-link">Collection</a>
+        <a href="#custom-studio" class="nav-link">
+          Custom Studio
+          <span class="nav-link-studio-tag">Interactive</span>
+        </a>
+        <a href="#leather-guide" class="nav-link">Leather Guide</a>
+        <a href="#craftsmanship" class="nav-link">Our Craft</a>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="header-actions">
+        <!-- Search Trigger -->
+        <button type="button" class="header-btn" id="search-trigger" aria-label="Search Atelier Hide products">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- Shopping Bag Trigger -->
+        <button type="button" class="header-btn cart-btn" id="cart-trigger" aria-label="Open Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button type="button" class="mobile-menu-toggle" id="mobile-toggle" aria-expanded="false" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Panel -->
+  <div class="mobile-nav-panel" id="mobile-nav" aria-hidden="true">
+    <nav class="mobile-nav-links">
+      <a href="#collection" class="mobile-nav-link">Featured Collection <span>→</span></a>
+      <a href="#custom-studio" class="mobile-nav-link">Custom Monogram Studio <span>→</span></a>
+      <a href="#leather-guide" class="mobile-nav-link">Material & Leather Guide <span>→</span></a>
+      <a href="#craftsmanship" class="mobile-nav-link">Artisan Craftsmanship <span>→</span></a>
+      <a href="#atelier-story" class="mobile-nav-link">Brand Philosophy <span>→</span></a>
+    </nav>
+    <div class="mobile-nav-footer">
+      <p>ATELIER HIDE • BENGALURU, INDIA</p>
+      <p>Hours: Mon – Sat, 10:00 – 19:00 IST</p>
+    </div>
+  </div>
+
+  <!-- Search Modal Overlay -->
+  <div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Search Collection">
+    <div class="search-modal-container">
+      <button type="button" class="modal-close-btn" id="search-close-btn" aria-label="Close search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="search-input-wrap">
+        <input type="text" class="search-input" id="search-query-input" placeholder="Search by piece, finish, or leather..." autocomplete="off">
+      </div>
+
+      <!-- Quick Search Filter Chips -->
+      <div class="search-chips-row">
+        <span class="search-chip-label">Quick Search:</span>
+        <button type="button" class="search-chip is-active" data-filter="all">All</button>
+        <button type="button" class="search-chip" data-filter="Wallets">Wallets</button>
+        <button type="button" class="search-chip" data-filter="Bags">Bags</button>
+        <button type="button" class="search-chip" data-filter="Travel">Travel</button>
+        <button type="button" class="search-chip" data-filter="Full-Grain">Full-Grain</button>
+      </div>
+
+      <!-- Live Search Results Grid -->
+      <div class="search-results-list" id="search-results-list">
+        <!-- Injected dynamically via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- C. Cinematic Hero Campaign — Motion Inspired Product-Led Hero -->
+    <section class="hero-section" id="hero">
+      <div class="hero-radial-backdrop" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-eyebrow motion-enter-1">
+            <span class="hero-archive-badge"><span class="hint-dot"></span> Atelier Archive • Edition 2026</span>
+            <span class="hero-meta-dot">•</span>
+            <span>Bengaluru Workshop</span>
+          </div>
+
+          <h1 class="hero-headline motion-enter-2">
+            The Art of the<br>
+            <em>Structured Silhouette.</em>
+          </h1>
+
+          <p class="hero-copy motion-enter-3">
+            Hand-molded Tuscan steerhide, architectural proportions, and personal monograms hot-stamped in 22k gold foil. Handcrafted by master artisans in our Bengaluru atelier.
+          </p>
+
+          <div class="hero-cta-group motion-enter-4">
+            <a href="#collection" class="btn btn-primary btn-hero-cta">
+              <span>EXPLORE THE COLLECTION</span>
+              <svg class="btn-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#custom-studio" class="btn btn-secondary btn-hero-ghost">
+              <span>DESIGN YOUR PIECE</span>
+              <span class="btn-ghost-tag">3D Studio</span>
+            </a>
+          </div>
+
+          <!-- Motion-Inspired Social Proof / Provenance Badges -->
+          <div class="hero-benchmarks motion-enter-5">
+            <div class="benchmark-item">
+              <span class="benchmark-icon">✦</span>
+              <div>
+                <span class="benchmark-val">Tuscan Steerhide</span>
+                <span class="benchmark-label">Consorzio Vera Pelle</span>
+              </div>
+            </div>
+            <div class="benchmark-divider"></div>
+            <div class="benchmark-item">
+              <span class="benchmark-icon">◈</span>
+              <div>
+                <span class="benchmark-val">Two-Needle Saddle Stitch</span>
+                <span class="benchmark-label">Lifetime Seam Guarantee</span>
+              </div>
+            </div>
+            <div class="benchmark-divider"></div>
+            <div class="benchmark-item">
+              <span class="benchmark-icon">❖</span>
+              <div>
+                <span class="benchmark-val">Solid Sand-Cast Brass</span>
+                <span class="benchmark-label">Foundry Hardware</span>
+              </div>
+            </div>
+            <div class="benchmark-divider"></div>
+            <div class="benchmark-item">
+              <span class="benchmark-icon">◎</span>
+              <div>
+                <span class="benchmark-val">Insured Domestic Transit</span>
+                <span class="benchmark-label">White-Glove Across India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero 3D Interactive Canvas & Visualizer -->
+        <div class="hero-visual motion-enter-3" id="hero-3d-wrap">
+          <div class="hero-3d-canvas-container" id="hero-3d-container">
+            <canvas id="hero-3d-canvas" aria-label="Interactive 3D Structured Leather Handbag Preview"></canvas>
+            
+            <!-- 3D Interaction Control Pill -->
+            <div class="hero-3d-hint-pill" id="hero-3d-hint">
+              <span class="hint-dot"></span>
+              <span>3D Interactive • Drag to Rotate 360°</span>
+            </div>
+
+            <!-- Fallback Static Image (gracefully displayed if WebGL is unsupported) -->
+            <div class="hero-image-wrap hero-3d-fallback" id="hero-fallback-wrap" style="display: none;">
+              <img src="assets/images/hero-campaign.svg" alt="Atelier Hide Structured Handbag in Heritage Cognac with Gold Monogram Clochette" width="800" height="600" loading="eager">
+            </div>
+          </div>
+
+          <!-- Editorial Provenance Caption Plate -->
+          <div class="hero-provenance-caption">
+            <div class="provenance-top-row">
+              <span class="provenance-tag">Archive Plate No. 01</span>
+              <span class="provenance-status">3D Masterpiece Preview</span>
+            </div>
+            <h4 class="provenance-title">The Structured Handbag No. 01 in Heritage Cognac</h4>
+            <p class="provenance-specs">5.5oz Tuscan Steerhide • Sand-Cast Antique Brass Turn-Lock • Bespoke Hot-Stamped Clochette</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motion-Inspired Interactive Scroll Indicator -->
+      <a href="#collection" class="hero-scroll-indicator motion-enter-5" aria-label="Scroll to explore collection">
+        <span class="scroll-pill-text">Scroll to Explore</span>
+        <div class="scroll-mouse-track">
+          <div class="scroll-mouse-wheel"></div>
+        </div>
+      </a>
+    </section>
+
+    <!-- D. Brand Introduction -->
+    <section class="section-padding section-light" id="atelier-story">
+      <div class="container intro-grid">
+        <div class="intro-visual">
+          <div class="intro-image-frame">
+            <img src="assets/images/brand-philosophy.svg" alt="Tuscan Full Grain Hide with Atelier Hide Crest" width="700" height="800" loading="lazy">
+          </div>
+          <p class="intro-caption">
+            <span class="intro-caption-dot"></span>
+            <span>Hand-selected vegetable tanned steerhide from certified heritage tanneries.</span>
+          </p>
+        </div>
+
+        <div class="intro-content">
+          <div class="section-meta">The Philosophy</div>
+          <h2 class="section-title">
+            "Good things take on a <em>life of their own.</em>"
+          </h2>
+
+          <div class="editorial-divider"></div>
+
+          <p class="intro-body">
+            Atelier Hide was founded on a simple conviction: the objects we carry daily should not degrade into obsolescence; they should mature into companions. The oils from your palms, the sun of transit, and the unexpected rain of travel do not ruin vegetable-tanned leather—they author its soul.
+          </p>
+
+          <p class="intro-body">
+            We avoid synthetic surface coatings, chemical plastic edge paints, and disposable fast-fashion shortcuts. By pairing uncompromised full-grain hides with traditional two-needle waxed saddle stitching, we build heirlooms that outlive seasons.
+          </p>
+
+          <!-- Key Craft Pillars -->
+          <div class="intro-pillars">
+            <div class="pillar-item">
+              <span class="pillar-number">01</span>
+              <h3 class="pillar-title">Full-Grain Hide</h3>
+              <p class="pillar-desc">Uncorrected, natural grain that preserves authentic pore structure and develops rich patina.</p>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-number">02</span>
+              <h3 class="pillar-title">Saddle Stitched</h3>
+              <p class="pillar-desc">Traditional two-needle hand cast stitches that cannot unravel even if a thread breaks.</p>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-number">03</span>
+              <h3 class="pillar-title">Solid Metal</h3>
+              <p class="pillar-desc">Machine-turned solid brass and cold-forged copper rivets that age with the leather.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E. Featured Collection & Motion Product Storytelling -->
+    <section class="section-padding collection-section" id="collection">
+      <div class="container">
+        <!-- Collection Section Header -->
+        <div class="collection-header motion-reveal">
+          <div class="section-kicker-wrap">
+            <span class="hint-dot"></span>
+            <span class="section-meta">Curated Editions • Archive 2026</span>
+          </div>
+          <h2 class="section-title">
+            The Atelier Silhouettes
+          </h2>
+          <p class="section-subtitle">
+            Engineered with architectural discipline. Each silhouette is produced in limited micro-batches, ready for direct acquisition or bespoke personalization in our 3D customizer studio.
+          </p>
+        </div>
+
+        <!-- 1. Motion-Driven Art-Directed Product Showcases -->
+        <div class="product-showcases-sequence">
+
+          <!-- Showcase 1: The Weekender No. 01 -->
+          <article class="showcase-card showcase-weekender motion-reveal" data-product="weekender">
+            <div class="showcase-visual-col">
+              <div class="showcase-media-frame">
+                <span class="showcase-floating-badge">Archive No. 01 • Travel Luggage</span>
+                <img src="assets/images/product-weekender.svg" alt="The Weekender No. 01 Duffel Bag" width="700" height="500" loading="lazy" class="showcase-img">
+                <div class="showcase-media-overlay"></div>
+              </div>
+            </div>
+            <div class="showcase-info-col">
+              <div class="showcase-meta-top">
+                <span class="showcase-cat-pill">Overland Transit</span>
+                <span class="showcase-price-tag">₹26,000</span>
+              </div>
+              <h3 class="showcase-title">The Weekender No. 01</h3>
+              <p class="showcase-lede">
+                Constructed to endure long-haul transit and overland journeys. Dual rolled handles distributed through wrap-around tensile harness straps that cradle heavy loads effortlessly.
+              </p>
+
+              <!-- Bento Spec Matrix -->
+              <div class="showcase-bento-grid">
+                <div class="bento-cell">
+                  <span class="bento-label">Hide Grade</span>
+                  <span class="bento-val">6.0oz Full-Grain Steerhide</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Capacity</span>
+                  <span class="bento-val">38 Litres (Overnight &amp; 4-Day)</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Hardware</span>
+                  <span class="bento-val">Solid Sand-Cast Brass Zippers</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Construction</span>
+                  <span class="bento-val">Perimeter Reinforced Harness</span>
+                </div>
+              </div>
+
+              <!-- Available Hides Palette -->
+              <div class="showcase-hides-wrap">
+                <span class="showcase-hides-title">Available Hides:</span>
+                <div class="showcase-swatches">
+                  <span class="showcase-swatch tan" title="Full-Grain Saddle Tan" data-finish="tan" role="button" tabindex="0" aria-label="Select Full-Grain Saddle Tan"></span>
+                  <span class="showcase-swatch cognac is-active" title="Pull-Up Heritage Cognac" data-finish="cognac" role="button" tabindex="0" aria-label="Select Pull-Up Heritage Cognac"></span>
+                  <span class="showcase-swatch espresso" title="Dark Roast Espresso" data-finish="espresso" role="button" tabindex="0" aria-label="Select Dark Roast Espresso"></span>
+                  <span class="showcase-swatch black" title="Obsidian Black" data-finish="black" role="button" tabindex="0" aria-label="Select Obsidian Black"></span>
+                  <span class="showcase-swatch crazy-horse" title="Waxed Crazy Horse" data-finish="crazy" role="button" tabindex="0" aria-label="Select Waxed Crazy Horse"></span>
+                </div>
+              </div>
+
+              <!-- Action CTAs -->
+              <div class="showcase-actions">
+                <button type="button" class="btn btn-primary btn-showcase-customize" data-product="weekender">
+                  <span>DESIGN IN 3D STUDIO</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button type="button" class="btn btn-outline-dark btn-showcase-details" data-product="weekender">
+                  <span>SPECIFICATIONS &amp; DETAILS</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Showcase 2: The Field Messenger No. 02 -->
+          <article class="showcase-card showcase-messenger showcase-inverted motion-reveal" data-product="messenger">
+            <div class="showcase-info-col">
+              <div class="showcase-meta-top">
+                <span class="showcase-cat-pill">Daily Commute</span>
+                <span class="showcase-price-tag">₹18,500</span>
+              </div>
+              <h3 class="showcase-title">The Field Messenger No. 02</h3>
+              <p class="showcase-lede">
+                Architected for daily movement with a structured gusseted compartment accommodating a 15-inch laptop, legal documents, and daily notebook. Finished with dual sand-cast roller buckles.
+              </p>
+
+              <!-- Bento Spec Matrix -->
+              <div class="showcase-bento-grid">
+                <div class="bento-cell">
+                  <span class="bento-label">Proportions</span>
+                  <span class="bento-val">38cm × 28cm × 9cm</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Device Fit</span>
+                  <span class="bento-val">Up to 15-Inch MacBook / Laptop</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Buckles</span>
+                  <span class="bento-val">Solid Sand-Cast Roller Buckles</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Shoulder Sling</span>
+                  <span class="bento-val">1.5″ Adjustable Veg-Tan Strap</span>
+                </div>
+              </div>
+
+              <!-- Available Hides Palette -->
+              <div class="showcase-hides-wrap">
+                <span class="showcase-hides-title">Available Hides:</span>
+                <div class="showcase-swatches">
+                  <span class="showcase-swatch tan" title="Full-Grain Saddle Tan" data-finish="tan" role="button" tabindex="0" aria-label="Select Full-Grain Saddle Tan"></span>
+                  <span class="showcase-swatch cognac" title="Pull-Up Heritage Cognac" data-finish="cognac" role="button" tabindex="0" aria-label="Select Pull-Up Heritage Cognac"></span>
+                  <span class="showcase-swatch espresso is-active" title="Dark Roast Espresso" data-finish="espresso" role="button" tabindex="0" aria-label="Select Dark Roast Espresso"></span>
+                  <span class="showcase-swatch black" title="Obsidian Black" data-finish="black" role="button" tabindex="0" aria-label="Select Obsidian Black"></span>
+                  <span class="showcase-swatch crazy-horse" title="Waxed Crazy Horse" data-finish="crazy" role="button" tabindex="0" aria-label="Select Waxed Crazy Horse"></span>
+                </div>
+              </div>
+
+              <!-- Action CTAs -->
+              <div class="showcase-actions">
+                <button type="button" class="btn btn-primary btn-showcase-customize" data-product="messenger">
+                  <span>DESIGN IN 3D STUDIO</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button type="button" class="btn btn-outline-dark btn-showcase-details" data-product="messenger">
+                  <span>SPECIFICATIONS &amp; DETAILS</span>
+                </button>
+              </div>
+            </div>
+            <div class="showcase-visual-col">
+              <div class="showcase-media-frame">
+                <span class="showcase-floating-badge">Archive No. 02 • Daily Carry</span>
+                <img src="assets/images/product-messenger.svg" alt="The Field Messenger Bag" width="700" height="500" loading="lazy" class="showcase-img">
+                <div class="showcase-media-overlay"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Showcase 3: The Everyday Bifold No. 03 -->
+          <article class="showcase-card showcase-bifold motion-reveal" data-product="bifold">
+            <div class="showcase-visual-col">
+              <div class="showcase-media-frame">
+                <span class="showcase-floating-badge">Archive No. 03 • Small Leather Goods</span>
+                <img src="assets/images/product-bifold.svg" alt="The Everyday Bifold Wallet" width="700" height="500" loading="lazy" class="showcase-img">
+                <div class="showcase-media-overlay"></div>
+              </div>
+            </div>
+            <div class="showcase-info-col">
+              <div class="showcase-meta-top">
+                <span class="showcase-cat-pill">Pocket Architecture</span>
+                <span class="showcase-price-tag">₹4,800</span>
+              </div>
+              <h3 class="showcase-title">The Everyday Bifold No. 03</h3>
+              <p class="showcase-lede">
+                Skived by hand to a slender 8mm folded profile. Accommodates 8 cards and full-length currency notes without structural deformation or pocket bulge.
+              </p>
+
+              <!-- Bento Spec Matrix -->
+              <div class="showcase-bento-grid">
+                <div class="bento-cell">
+                  <span class="bento-label">Capacity</span>
+                  <span class="bento-val">6 Cards + 2 Hidden Stash Slots</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Folded Profile</span>
+                  <span class="bento-val">8mm Ultrathin Hand-Skived</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Stitching</span>
+                  <span class="bento-val">Waxed Poly-Linen Saddle Cast</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Edges</span>
+                  <span class="bento-val">Beeswax Friction Burnished</span>
+                </div>
+              </div>
+
+              <!-- Available Hides Palette -->
+              <div class="showcase-hides-wrap">
+                <span class="showcase-hides-title">Available Hides:</span>
+                <div class="showcase-swatches">
+                  <span class="showcase-swatch tan is-active" title="Full-Grain Saddle Tan" data-finish="tan" role="button" tabindex="0" aria-label="Select Full-Grain Saddle Tan"></span>
+                  <span class="showcase-swatch cognac" title="Pull-Up Heritage Cognac" data-finish="cognac" role="button" tabindex="0" aria-label="Select Pull-Up Heritage Cognac"></span>
+                  <span class="showcase-swatch espresso" title="Dark Roast Espresso" data-finish="espresso" role="button" tabindex="0" aria-label="Select Dark Roast Espresso"></span>
+                  <span class="showcase-swatch black" title="Obsidian Black" data-finish="black" role="button" tabindex="0" aria-label="Select Obsidian Black"></span>
+                  <span class="showcase-swatch crazy-horse" title="Waxed Crazy Horse" data-finish="crazy" role="button" tabindex="0" aria-label="Select Waxed Crazy Horse"></span>
+                </div>
+              </div>
+
+              <!-- Action CTAs -->
+              <div class="showcase-actions">
+                <button type="button" class="btn btn-primary btn-showcase-customize" data-product="bifold">
+                  <span>DESIGN IN 3D STUDIO</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button type="button" class="btn btn-outline-dark btn-showcase-details" data-product="bifold">
+                  <span>SPECIFICATIONS &amp; DETAILS</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Showcase 4: The Passport Companion No. 04 -->
+          <article class="showcase-card showcase-passport showcase-inverted motion-reveal" data-product="passport">
+            <div class="showcase-info-col">
+              <div class="showcase-meta-top">
+                <span class="showcase-cat-pill">Travel Essentials</span>
+                <span class="showcase-price-tag">₹3,200</span>
+              </div>
+              <h3 class="showcase-title">The Passport Companion No. 04</h3>
+              <p class="showcase-lede">
+                An intimate companion for international borders. Holds your passport, customs declarations, boarding pass, and micro travel pen in an architecturally slender profile.
+              </p>
+
+              <!-- Bento Spec Matrix -->
+              <div class="showcase-bento-grid">
+                <div class="bento-cell">
+                  <span class="bento-label">Fit</span>
+                  <span class="bento-val">Global Standard Passports</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Boarding Pass</span>
+                  <span class="bento-val">Dedicated Access Slit</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Closure</span>
+                  <span class="bento-val">Solid Brass Concentric Snap</span>
+                </div>
+                <div class="bento-cell">
+                  <span class="bento-label">Grain Feel</span>
+                  <span class="bento-val">Full Aniline Tuscan Grain</span>
+                </div>
+              </div>
+
+              <!-- Available Hides Palette -->
+              <div class="showcase-hides-wrap">
+                <span class="showcase-hides-title">Available Hides:</span>
+                <div class="showcase-swatches">
+                  <span class="showcase-swatch tan" title="Full-Grain Saddle Tan" data-finish="tan" role="button" tabindex="0" aria-label="Select Full-Grain Saddle Tan"></span>
+                  <span class="showcase-swatch cognac" title="Pull-Up Heritage Cognac" data-finish="cognac" role="button" tabindex="0" aria-label="Select Pull-Up Heritage Cognac"></span>
+                  <span class="showcase-swatch espresso" title="Dark Roast Espresso" data-finish="espresso" role="button" tabindex="0" aria-label="Select Dark Roast Espresso"></span>
+                  <span class="showcase-swatch black is-active" title="Obsidian Black" data-finish="black" role="button" tabindex="0" aria-label="Select Obsidian Black"></span>
+                  <span class="showcase-swatch crazy-horse" title="Waxed Crazy Horse" data-finish="crazy" role="button" tabindex="0" aria-label="Select Waxed Crazy Horse"></span>
+                </div>
+              </div>
+
+              <!-- Action CTAs -->
+              <div class="showcase-actions">
+                <button type="button" class="btn btn-primary btn-showcase-customize" data-product="passport">
+                  <span>DESIGN IN 3D STUDIO</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button type="button" class="btn btn-outline-dark btn-showcase-details" data-product="passport">
+                  <span>SPECIFICATIONS &amp; DETAILS</span>
+                </button>
+              </div>
+            </div>
+            <div class="showcase-visual-col">
+              <div class="showcase-media-frame">
+                <span class="showcase-floating-badge">Archive No. 04 • Travel Folio</span>
+                <img src="assets/images/product-passport.svg" alt="The Passport Companion Folio" width="700" height="500" loading="lazy" class="showcase-img">
+                <div class="showcase-media-overlay"></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- 2. Interactive Archive Catalog Shelf (Compatible with #collection-grid tests & direct quick curation) -->
+        <div class="collection-shelf-divider motion-reveal">
+          <div class="shelf-divider-line"></div>
+          <div class="shelf-divider-pill">
+            <span class="shelf-pill-dot"></span>
+            <span>Browse Complete Atelier Catalog</span>
+          </div>
+          <div class="shelf-divider-line"></div>
+        </div>
+
+        <div class="collection-grid motion-reveal" id="collection-grid">
+          <!-- Dynamically populated via script.js for consistency & test assertions -->
+        </div>
+      </div>
+    </section>
+
+    <!-- F. The Custom Studio — The Signature Centerpiece -->
+    <section class="section-padding studio-section" id="custom-studio">
+      <div class="studio-ambient-glow"></div>
+      <div class="container">
+        <!-- Studio Header -->
+        <div class="studio-header">
+          <div class="section-meta">Interactive Commission Bench</div>
+          <h2 class="section-title">The Bespoke Custom Studio</h2>
+          <p class="section-subtitle">
+            Configure your silhouette, select your tannery finish, calibrate your solid hardware, and preview your hot-stamped personalized monogram rendered in real time.
+          </p>
+        </div>
+
+        <!-- Studio Workbench Grid -->
+        <div class="studio-workbench">
+          <!-- Left: Interactive Product Visualizer Card -->
+          <div class="studio-visualizer-card">
+            <div class="visualizer-top-bar">
+              <div class="studio-model-indicator">
+                <span class="studio-model-label">Interactive Preview</span>
+                <h3 class="studio-model-name" id="preview-model-name">The Structured Handbag</h3>
+                <p class="studio-model-desc" id="preview-model-desc">A masterwork structured top-handle handbag in vegetable-tanned steerhide with hand-molded gussets, rolled handle, and sand-cast solid brass turn-lock clasp.</p>
+              </div>
+
+              <!-- Lighting Mode Switch -->
+              <div class="visualizer-lighting-toggle" aria-label="Studio lighting ambiance">
+                <button type="button" class="light-btn active" id="btn-light-day" data-mode="day">Daylight</button>
+                <button type="button" class="light-btn" id="btn-light-warm" data-mode="warm">Workshop</button>
+              </div>
+            </div>
+
+            <!-- Canvas Stage: Interactive 3D WebGL Studio Workbench -->
+            <div class="canvas-stage" id="canvas-stage">
+              <div class="canvas-product-display" id="canvas-product-display">
+                <!-- Three.js 3D Customizer Canvas Viewport -->
+                <canvas id="studio-3d-canvas" aria-label="Interactive 3D Product Customizer Canvas"></canvas>
+
+                <!-- 3D Studio Inspection Overlay Controls -->
+                <div class="studio-3d-badge-bar">
+                  <div class="studio-3d-inspect-pill">
+                    <span class="hint-dot"></span>
+                    <span id="studio-view-indicator-text">Studio Atelier Preview</span>
+                  </div>
+                  <button type="button" class="studio-3d-view-btn" id="btn-toggle-studio-3d" title="Switch between 3D model and Studio Vector plate">
+                    <span>3D Orbit View</span>
+                  </button>
+                  <button type="button" class="studio-3d-view-btn" id="btn-reset-studio-camera" title="Reset Viewpoint" style="display: none;">
+                    <span>Reset Angle</span>
+                  </button>
+                </div>
+
+                <!-- Interactive 2D Vector Silhouette Container (dynamically inlined for real-time leather shader reactivity) -->
+                <div class="studio-vector-stage" id="studio-vector-stage"></div>
+
+                <!-- Product Silhouette Image Preview (preserved for complete backwards compatibility & tests) -->
+                <img id="studio-svg-image" class="studio-product-image fallback-img" src="assets/images/product-handbag.svg" alt="Customizer Silhouette Preview">
+
+                <!-- Monogram / Name Live Overlay Element (kept synchronized in DOM) -->
+                <div class="monogram-live-stamp pos-handbag monogram-font-serif emboss-blind" id="monogram-live-stamp" aria-hidden="true">
+                  AH
+                </div>
+              </div>
+
+              <!-- Live Interior Inscription Preview Ribbon -->
+              <div class="canvas-inscription-preview" id="canvas-inscription-preview" title="Interior Heat-Stamped Inscription Preview">
+                <span class="inscription-ribbon-tag">✦ Interior Inscription</span>
+                <span class="inscription-ribbon-text" id="ribbon-inscription-text">— None specified —</span>
+              </div>
+            </div>
+
+            <!-- Macro Loupe Inspection Badge -->
+            <div class="macro-loupe-card">
+              <div class="loupe-details">
+                <span class="loupe-title">Craft Specifications</span>
+                <span class="loupe-specs" id="loupe-specs-text">Heritage Cognac • Antique Brass • Blind Emboss</span>
+              </div>
+              <div class="loupe-swatch-badge">
+                <span class="loupe-dot" id="loupe-dot-indicator"></span>
+                <span id="loupe-finish-name">Heritage Cognac</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Controls & Configuration Engine -->
+          <div class="studio-controls">
+            <!-- Step 1: Select Silhouette -->
+            <div class="studio-step-block">
+              <div class="studio-step-header">
+                <span class="studio-step-num">Step 01</span>
+                <h3 class="studio-step-title">Select Silhouette</h3>
+                <span class="studio-step-selected" id="selected-product-label">The Structured Handbag</span>
+              </div>
+              <div class="product-picker-grid" id="product-picker-grid">
+                <!-- Injected via script.js -->
+              </div>
+            </div>
+
+            <!-- Step 2: Leather Finish Selection -->
+            <div class="studio-step-block">
+              <div class="studio-step-header">
+                <span class="studio-step-num">Step 02</span>
+                <h3 class="studio-step-title">Leather Finish</h3>
+                <span class="studio-step-selected" id="selected-finish-label">Heritage Cognac</span>
+              </div>
+              <div class="leather-swatch-list" id="leather-swatch-list">
+                <!-- 5 tactile finishes -->
+              </div>
+            </div>
+
+            <!-- Step 3: Hardware Finish Selection -->
+            <div class="studio-step-block">
+              <div class="studio-step-header">
+                <span class="studio-step-num">Step 03</span>
+                <h3 class="studio-step-title">Hardware Finish</h3>
+                <span class="studio-step-selected" id="selected-hardware-label">Antique Brass</span>
+              </div>
+              <div class="hardware-choice-row">
+                <button type="button" class="hardware-btn is-active" data-hardware="brass">
+                  <span class="hw-pill-icon hw-brass"></span>
+                  <span class="hw-name">Antique Brass</span>
+                </button>
+                <button type="button" class="hardware-btn" data-hardware="silver">
+                  <span class="hw-pill-icon hw-silver"></span>
+                  <span class="hw-name">Brushed Silver</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4: Personalization, Monogram & Notes -->
+            <div class="studio-step-block">
+              <div class="studio-step-header">
+                <span class="studio-step-num">Step 04</span>
+                <h3 class="studio-step-title">Bespoke Personalization</h3>
+                <span class="studio-step-selected" id="selected-emboss-label">Blind Deboss</span>
+              </div>
+
+              <div class="monogram-controls-wrap">
+                <!-- Customer Full Name Input -->
+                <div class="monogram-input-box">
+                  <div class="monogram-input-label-row">
+                    <label for="customer-name-input">Full Name / Your Name (Personalization)</label>
+                    <span class="monogram-char-counter" id="customer-name-counter">0 / 30</span>
+                  </div>
+                  <input type="text" id="customer-name-input" name="customerName" class="monogram-text-input" maxlength="30" placeholder="e.g. Arjun Dev" autocomplete="name" spellcheck="false" data-testid="full-name-input">
+                  <span class="field-micro-hint">Enter your full name or recipient's name. Standard name characters allowed.</span>
+                </div>
+
+                <!-- Personalization Display Choice (Initials vs Full Name) -->
+                <div>
+                  <div class="monogram-input-label-row">
+                    <span>Exterior Stamping Choice</span>
+                  </div>
+                  <div class="personalization-mode-row">
+                    <button type="button" class="personalization-mode-btn is-active" data-mode="initials" id="btn-mode-initials">
+                      <span class="mode-btn-title">Custom Initials</span>
+                      <span class="mode-btn-desc">1–4 Characters (Handset display size)</span>
+                    </button>
+                    <button type="button" class="personalization-mode-btn" data-mode="name" id="btn-mode-name">
+                      <span class="mode-btn-title">Full Name</span>
+                      <span class="mode-btn-desc">Up to 30 Chars (Letter-spaced capitals)</span>
+                    </button>
+                  </div>
+                  <span class="field-micro-hint" id="personalization-support-hint">All four silhouettes support both full name and initials embossing.</span>
+                </div>
+
+                <!-- Custom Initials Input with Live Counter -->
+                <div class="monogram-input-box" id="initials-input-container">
+                  <div class="monogram-input-label-row">
+                    <label for="monogram-input">Custom Initials (1 – 4 Characters)</label>
+                    <span class="monogram-char-counter" id="monogram-counter">2 / 4</span>
+                  </div>
+                  <input type="text" id="monogram-input" class="monogram-text-input" value="AH" maxlength="4" placeholder="E.G. AH" autocomplete="off" spellcheck="false">
+                </div>
+
+                <!-- Custom Inscription (Optional) -->
+                <div class="monogram-input-box">
+                  <div class="monogram-input-label-row">
+                    <label for="custom-inscription-input">Personal Message / Custom Inscription (Optional)</label>
+                    <span class="monogram-char-counter" id="inscription-counter">0 / 60</span>
+                  </div>
+                  <input type="text" id="custom-inscription-input" class="monogram-text-input" maxlength="60" placeholder="e.g. Forever &amp; Always — 2026" autocomplete="off" spellcheck="false">
+                  <span class="field-micro-hint">Heat-stamped onto interior leather pocket or ribbon. Live preview rendered above.</span>
+                </div>
+
+                <!-- Your Message / Mission (Note to the Maker) -->
+                <div class="monogram-input-box">
+                  <div class="monogram-input-label-row">
+                    <label for="maker-note-input">Your Message / Mission (Note to the Maker)</label>
+                    <span class="monogram-char-counter" id="maker-note-counter">0 / 200</span>
+                  </div>
+                  <textarea id="maker-note-input" class="monogram-textarea" maxlength="200" rows="3" placeholder="Share your personal story, purpose, or milestone context for our Bengaluru atelier team (e.g. 60th birthday gift, special packaging request)..."></textarea>
+                  <span class="field-micro-hint">Preserved in your artisan commission record and read before hide cutting (not stamped on leather).</span>
+                </div>
+
+                <!-- Embossing Method -->
+                <div>
+                  <div class="monogram-input-label-row">
+                    <span>Embossing Method</span>
+                  </div>
+                  <div class="emboss-selector-row">
+                    <button type="button" class="emboss-method-btn is-active" data-emboss="blind">
+                      <span class="emboss-method-title">Blind Embossing</span>
+                      <span class="emboss-method-cost">Included (₹0)</span>
+                    </button>
+                    <button type="button" class="emboss-method-btn" data-emboss="foil">
+                      <span class="emboss-method-title">22k Gold Foil</span>
+                      <span class="emboss-method-cost">+ ₹600 Surcharge</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Monogram Typography -->
+                <div>
+                  <div class="monogram-input-label-row">
+                    <span>Monogram Typography</span>
+                  </div>
+                  <div class="typography-selector-row">
+                    <button type="button" class="typo-btn is-active" data-typo="serif">
+                      <span class="typo-sample" style="font-family: var(--font-serif);">Ag</span>
+                      <span class="typo-name">Classic Serif</span>
+                    </button>
+                    <button type="button" class="typo-btn" data-typo="sans">
+                      <span class="typo-sample" style="font-family: var(--font-sans);">Ag</span>
+                      <span class="typo-name">Modern Sans</span>
+                    </button>
+                    <button type="button" class="typo-btn" data-typo="initials">
+                      <span class="typo-sample" style="font-family: var(--font-initials);">A·H</span>
+                      <span class="typo-name">Initials</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Studio Summary & Deterministic Pricing -->
+            <div class="studio-summary-box">
+              <div class="summary-rows">
+                <div class="summary-row">
+                  <span>Base Silhouette (<span id="summary-prod-name">The Structured Handbag</span>):</span>
+                  <span id="summary-base-price">₹28,500</span>
+                </div>
+                <div class="summary-row">
+                  <span>Selected Hide (<span id="summary-leather-name">Heritage Cognac</span>):</span>
+                  <span>Included</span>
+                </div>
+                <div class="summary-row">
+                  <span>Hardware (<span id="summary-hw-name">Antique Brass</span>):</span>
+                  <span>Included</span>
+                </div>
+                <div class="summary-row">
+                  <span>Embossing Method (<span id="summary-emboss-name">Blind Deboss</span>):</span>
+                  <span id="summary-emboss-price">₹0</span>
+                </div>
+                <div class="summary-row">
+                  <span>Personalization:</span>
+                  <span id="summary-personalization-display" style="font-weight: 600; color: var(--color-brass-light);">Initials: AH</span>
+                </div>
+                <div class="summary-row" id="summary-inscription-row" style="display: none;">
+                  <span>Interior Inscription:</span>
+                  <span id="summary-inscription-text" style="font-style: italic; color: #dfcaa7;">—</span>
+                </div>
+                <div class="summary-row" id="summary-maker-note-row" style="display: none;">
+                  <span>Note to Maker:</span>
+                  <span id="summary-maker-note-text" style="color: #b5a999;">Included</span>
+                </div>
+              </div>
+
+              <div class="summary-total-row">
+                <span class="total-label">Commission Total</span>
+                <span class="total-amount" id="studio-total-price">₹28,500</span>
+              </div>
+
+              <div class="studio-actions-group">
+                <button type="button" class="btn btn-primary btn-add-studio" id="btn-add-custom-to-cart">
+                  <span>Add Bespoke Piece to Bag</span>
+                  <span>→</span>
+                </button>
+                <button type="button" class="btn-reset-studio" id="btn-reset-studio">
+                  Reset Studio Configuration
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G. Leather Guide -->
+    <section class="section-padding section-light" id="leather-guide">
+      <div class="container">
+        <div class="section-meta">Material Integrity</div>
+        <h2 class="section-title">The Leather Guide</h2>
+        <p class="section-subtitle">
+          Every hide carries an honest autobiography. Understand the tannage methods, tactile handling, and aging characteristics of our four leather varieties.
+        </p>
+
+        <!-- Interactive Leather Tabs -->
+        <div class="guide-tabs" id="guide-tabs" role="tablist">
+          <button type="button" class="guide-tab-btn is-active" role="tab" aria-selected="true" data-guide="full-grain">Full-Grain Vegetable Tan</button>
+          <button type="button" class="guide-tab-btn" role="tab" aria-selected="false" data-guide="pull-up">Tuscan Pull-Up Aniline</button>
+          <button type="button" class="guide-tab-btn" role="tab" aria-selected="false" data-guide="crazy-horse">Crazy Horse Waxed Nubuck</button>
+          <button type="button" class="guide-tab-btn" role="tab" aria-selected="false" data-guide="matte">Nordic Matte Pebble</button>
+        </div>
+
+        <!-- Tab Content Panels -->
+        <div class="guide-panels-wrap" id="guide-panels-wrap">
+          <!-- Full-Grain Panel -->
+          <div class="guide-content-panel is-active" id="guide-panel-full-grain">
+            <div class="guide-panel-media">
+              <img src="assets/images/leather-full-grain.svg" alt="Full-Grain Leather Texture Macro View">
+            </div>
+            <div class="guide-panel-body">
+              <span class="guide-type-badge">The Gold Standard</span>
+              <h3 class="guide-title">Full-Grain Vegetable Tanned</h3>
+              <p class="guide-description">
+                The uppermost layer of the hide, left completely unbuffed and uncorrected. Natural fat wrinkles, subtle growth marks, and hair pores remain visible. Tanned slowly over 60 days using natural chestnut and mimosa barks, it yields a firm, tactile temper and develops the deepest, quickest golden honey patina.
+              </p>
+              <div class="guide-spec-grid">
+                <div class="guide-spec-item">
+                  <span class="spec-label">Tannage Method</span>
+                  <span class="spec-value">100% Tree Bark Extract</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Patina Profile</span>
+                  <span class="spec-value">Rapid &amp; Warm Amber</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Touch &amp; Temper</span>
+                  <span class="spec-value">Firm, Smooth, Organic</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Recommended Care</span>
+                  <span class="spec-value">Natural Beeswax &amp; Jojoba Balm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pull-Up Panel -->
+          <div class="guide-content-panel" id="guide-panel-pull-up">
+            <div class="guide-panel-media">
+              <img src="assets/images/leather-pull-up.svg" alt="Pull-Up Aniline Leather Texture">
+            </div>
+            <div class="guide-panel-body">
+              <span class="guide-type-badge">Dynamic Color Burst</span>
+              <h3 class="guide-title">Tuscan Oil Pull-Up</h3>
+              <p class="guide-description">
+                Infused through hot-stuffing with rich liquefiable oils and natural animal tallows. When the leather is bent, folded, or stressed during travel, the oils migrate across the fibers, creating a dramatic, luminous lightening of tone known as the "pull-up effect." Scratches easily buff out with gentle thumb friction.
+              </p>
+              <div class="guide-spec-grid">
+                <div class="guide-spec-item">
+                  <span class="spec-label">Tannage Method</span>
+                  <span class="spec-value">Vegetable / Oil Wax Stuffed</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Patina Profile</span>
+                  <span class="spec-value">Multi-Tonal Contrast</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Touch &amp; Temper</span>
+                  <span class="spec-value">Supple, Waxy, Responsive</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Recommended Care</span>
+                  <span class="spec-value">Mink Oil or Lanolin Cream</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Crazy Horse Panel -->
+          <div class="guide-content-panel" id="guide-panel-crazy-horse">
+            <div class="guide-panel-media">
+              <img src="assets/images/leather-crazy-horse.svg" alt="Crazy Horse Waxed Nubuck Texture">
+            </div>
+            <div class="guide-panel-body">
+              <span class="guide-type-badge">Rustic &amp; Self-Healing</span>
+              <h3 class="guide-title">Waxed Nubuck (Crazy Horse)</h3>
+              <p class="guide-description">
+                Buffed lightly on the grain to create a microscopic velvety nap, then saturated with specialized microcrystalline waxes. It shows marks, scuffs, and daily handling like a leather travel logbook. Rubbing warm fingertips across any mark redistributes the wax, softening scratches into antique highlights.
+              </p>
+              <div class="guide-spec-grid">
+                <div class="guide-spec-item">
+                  <span class="spec-label">Tannage Method</span>
+                  <span class="spec-value">Wax-Saturated Full-Grain</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Patina Profile</span>
+                  <span class="spec-value">Distressed Vintage Antique</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Touch &amp; Temper</span>
+                  <span class="spec-value">Velvety, Matte, Soft</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Recommended Care</span>
+                  <span class="spec-value">Horsehair Brush &amp; Wax Dressing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Matte Pebble Panel -->
+          <div class="guide-content-panel" id="guide-panel-matte">
+            <div class="guide-panel-media">
+              <img src="assets/images/leather-matte.svg" alt="Nordic Matte Pebble Leather Texture">
+            </div>
+            <div class="guide-panel-body">
+              <span class="guide-type-badge">Modern Resilience</span>
+              <h3 class="guide-title">Nordic Matte Pebble</h3>
+              <p class="guide-description">
+                Tumbled in wooden drums for 18 hours to naturally contract and gather the grain into an architectural pebble texture. Finished with a zero-sheen matte water-repellent wax, it resists accidental spills, key scratches, and daily urban scuffs with quiet architectural elegance.
+              </p>
+              <div class="guide-spec-grid">
+                <div class="guide-spec-item">
+                  <span class="spec-label">Tannage Method</span>
+                  <span class="spec-value">Drum-Milled Vegetable Tan</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Patina Profile</span>
+                  <span class="spec-value">Subtle Luster &amp; Deepened Color</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Touch &amp; Temper</span>
+                  <span class="spec-value">Textured, Plusable, Resilient</span>
+                </div>
+                <div class="guide-spec-item">
+                  <span class="spec-label">Recommended Care</span>
+                  <span class="spec-value">Damp Cloth &amp; Neutral Leather Milk</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Patina Evolution Over Time -->
+        <div class="patina-evolution-box" id="patina-evolution-box">
+          <div class="patina-header">
+            <span class="section-meta" style="justify-content: center;">Aging Characteristics</span>
+            <h3 class="section-title" style="font-size: 2rem;">The Interactive Patina Timeline</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Click through the lifecycle stages below to witness how genuine full-grain steerhide deepens in luster, contour, and tonal warmth over years of ownership.
+            </p>
+          </div>
+
+          <!-- Dynamic Patina Stage Showcase Visualizer -->
+          <div class="patina-interactive-stage" id="patina-stage-viewer">
+            <div class="patina-macro-preview stage-day1" id="patina-macro-display" aria-hidden="true">
+              <div class="patina-macro-leather-plate" id="patina-macro-plate"></div>
+              <div class="patina-macro-badge">
+                <span class="patina-badge-label" id="patina-badge-stage">Stage: Day 01</span>
+                <span class="patina-badge-val" id="patina-badge-effect">Crisp Workshop Temper • Low Matte Sheen</span>
+              </div>
+            </div>
+
+            <div class="patina-stage-specs-grid" id="patina-stage-specs">
+              <div class="patina-spec-box">
+                <span class="patina-spec-key">Surface Luster</span>
+                <span class="patina-spec-val" id="spec-luster">Pure Matte (Zero Artificial Coating)</span>
+              </div>
+              <div class="patina-spec-box">
+                <span class="patina-spec-key">Fiber Temper</span>
+                <span class="patina-spec-val" id="spec-temper">Firm, Architectural &amp; Taut</span>
+              </div>
+              <div class="patina-spec-box">
+                <span class="patina-spec-key">Tonal Shade</span>
+                <span class="patina-spec-val" id="spec-shade">Raw Tuscan Tan / Golden Honey</span>
+              </div>
+              <div class="patina-spec-box">
+                <span class="patina-spec-key">Artisan Maintenance</span>
+                <span class="patina-spec-val" id="spec-care">Dry Microfiber Dusting Only</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clickable Stage Selection Cards -->
+          <div class="patina-timeline" id="patina-timeline-cards" role="tablist" aria-label="Patina Lifecycle Stages">
+            <button type="button" class="patina-stage-card is-active" role="tab" aria-selected="true" data-stage="day1">
+              <span class="patina-stage-time">Day 01</span>
+              <h4 class="patina-stage-title">Crisp Workshop Form</h4>
+              <p class="patina-stage-desc">
+                Clean matte tone, firm architectural hand-feel, taut stitching, and pristine uncreased leather surfaces straight from the workbench.
+              </p>
+              <span class="patina-select-pill">Active View</span>
+            </button>
+            <button type="button" class="patina-stage-card" role="tab" aria-selected="false" data-stage="year1">
+              <span class="patina-stage-time">Year 01</span>
+              <h4 class="patina-stage-title">Mellowing Character</h4>
+              <p class="patina-stage-desc">
+                Edges soften and contour to your pockets. Sunlight darkens the tone into a warm caramel; contact points develop a gentle satin luster.
+              </p>
+              <span class="patina-select-pill">Click to Inspect</span>
+            </button>
+            <button type="button" class="patina-stage-card" role="tab" aria-selected="false" data-stage="year5">
+              <span class="patina-stage-time">Year 05+</span>
+              <h4 class="patina-stage-title">Bespoke Heirloom</h4>
+              <p class="patina-stage-desc">
+                A rich, burnished depth of color impossible to replicate artificially. The hide carries an irreplaceable map of every journey and city.
+              </p>
+              <span class="patina-select-pill">Click to Inspect</span>
+            </button>
+          </div>
+
+          <!-- Sourcing Integrity Note -->
+          <div class="sourcing-integrity-note">
+            <strong>Authenticity &amp; Sourcing Integrity:</strong>
+            We encourage discerning buyers to assess leather goods by inspecting genuine tannery documentation, pore structure under magnification, cross-sectional fiber density, and hand-stitched construction—rather than relying on arbitrary marketing labels or fabricated seal badges.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H. Craftsmanship & Brand Story -->
+    <section class="section-padding section-dark" id="craftsmanship">
+      <div class="container">
+        <div class="section-meta">The Workshop</div>
+        <h2 class="section-title">Six Stages of Devotion</h2>
+        <p class="section-subtitle">
+          Every Atelier Hide commission is shaped over thirty hours of deliberate manual craft. Here is how our artisans turn raw hides into lifetime pieces.
+        </p>
+
+        <div class="craft-steps-grid">
+          <!-- Stage 1 -->
+          <div class="craft-step-card">
+            <div class="craft-step-media">
+              <img src="assets/images/craft-cutting.svg" alt="Hand Pattern Clicking Leather">
+            </div>
+            <div class="craft-step-content">
+              <div class="craft-step-meta">
+                <span class="step-num">01</span>
+                <span class="step-title">Pattern Clicking</span>
+              </div>
+              <p class="step-desc">
+                Each panel is oriented along the natural grain line using traditional brass-weighted rulers and Japanese white-steel clicking knives.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="craft-step-card">
+            <div class="craft-step-media">
+              <img src="assets/images/craft-stitching.svg" alt="Traditional Two-Needle Saddle Stitching">
+            </div>
+            <div class="craft-step-content">
+              <div class="craft-step-meta">
+                <span class="step-num">02</span>
+                <span class="step-title">Saddle Stitching</span>
+              </div>
+              <p class="step-desc">
+                Held firmly in a French wooden clam, panels are pierced with diamond pricking irons and hand-sewn with two needles and beeswaxed linen.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="craft-step-card">
+            <div class="craft-step-media">
+              <img src="assets/images/craft-burnishing.svg" alt="Organic Beeswax Edge Burnishing">
+            </div>
+            <div class="craft-step-content">
+              <div class="craft-step-meta">
+                <span class="step-num">03</span>
+                <span class="step-title">Edge Burnishing</span>
+              </div>
+              <p class="step-desc">
+                Raw cut edges are hand-beveled, rubbed with natural tree gum, and friction-polished with dense ebony slickers and pure organic beeswax.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="craft-step-card">
+            <div class="craft-step-media">
+              <img src="assets/images/craft-hardware.svg" alt="Machined Solid Brass Hardware and Cold-Forged Copper Rivets Assembly" loading="lazy">
+            </div>
+            <div class="craft-step-content">
+              <div class="craft-step-meta">
+                <span class="step-num">04</span>
+                <span class="step-title">Solid Hardware</span>
+              </div>
+              <p class="step-desc">
+                Buckles, D-rings, and zippers are sand-cast from lead-free solid brass and secured with cold-forged solid copper rivets.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 5 -->
+          <div class="craft-step-card">
+            <div class="craft-step-media">
+              <img src="assets/images/craft-stamping.svg" alt="Artisan Hot Stamping with Brass Foundry Type and 22k Gold Foil" loading="lazy">
+            </div>
+            <div class="craft-step-content">
+              <div class="craft-step-meta">
+                <span class="step-num">05</span>
+                <span class="step-title">Hot Stamping</span>
+              </div>
+              <p class="step-desc">
+                Initials are handset using brass foundry type, heated to precisely 110°C, and stamped under hand-levered hydraulic pressure.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 6 -->
+          <div class="craft-step-card">
+            <div class="craft-step-media">
+              <img src="assets/images/craft-conditioning.svg" alt="Final Magnification Inspection and Organic Balm Conditioning" loading="lazy">
+            </div>
+            <div class="craft-step-content">
+              <div class="craft-step-meta">
+                <span class="step-num">06</span>
+                <span class="step-title">Final Conditioning</span>
+              </div>
+              <p class="step-desc">
+                Each finished article is massaged with organic jojoba and almond balm, inspected under bench magnification, and archived with a unique maker code.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- I. Newsletter Section ("The Atelier Journal") -->
+    <section class="section-padding journal-section">
+      <div class="container journal-wrap">
+        <div class="section-meta" style="justify-content: center;">Dispatch &amp; Releases</div>
+        <h2 class="section-title" style="font-size: 2.2rem;">The Atelier Journal</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">
+          Invitations to limited hide batches, studio craftsmanship essays, and private bespoke commission slots.
+        </p>
+
+        <form class="journal-form" id="journal-form">
+          <input type="email" class="journal-input" id="journal-email" placeholder="Enter your email address" required autocomplete="email">
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe to Journal</button>
+        </form>
+        <p class="journal-disclaimer">Zero spam. Only considered dispatches once or twice per quarter.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- J. Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <!-- Col 1: Brand Manifesto -->
+      <div class="footer-brand-col">
+        <span class="footer-brand-title">Atelier Hide</span>
+        <p class="footer-brand-motto">"Objects to keep. Materials that remember."</p>
+        <p class="footer-brand-desc">
+          An independent luxury leather house handcrafting full-grain leather goods and bespoke monogram commissions in Bengaluru, India.
+        </p>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#collection" class="footer-link">The Collection</a></li>
+          <li><a href="#custom-studio" class="footer-link">Custom Studio</a></li>
+          <li><a href="#leather-guide" class="footer-link">Leather Guide</a></li>
+          <li><a href="#craftsmanship" class="footer-link">Artisan Craft</a></li>
+          <li><a href="#atelier-story" class="footer-link">Philosophy</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Leather Care & Warranty -->
+      <div>
+        <h4 class="footer-col-title">Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="#leather-guide" class="footer-link">Leather Care Guide</a></li>
+          <li><a href="#craftsmanship" class="footer-link">Lifetime Stitch Guarantee</a></li>
+          <li><a href="#custom-studio" class="footer-link">Bespoke Monogramming</a></li>
+          <li><a href="#announcement-bar" class="footer-link">Domestic Shipping Info</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Atelier Studio Info -->
+      <div>
+        <h4 class="footer-col-title">The Bengaluru Atelier</h4>
+        <div class="footer-atelier-info">
+          <p>No. 42, St. Mark's Road</p>
+          <p>Bengaluru, Karnataka 560001</p>
+          <p style="margin-top: 8px;">Workshop Hours: 10:00 – 19:00 IST</p>
+          <p>concierge@atelierhide.in</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar with Back-to-Top -->
+    <div class="container footer-bottom">
+      <div>
+        © 2026 ATELIER HIDE. All Rights Reserved.
+        <span class="footer-credit">• CSE326 Project: Handmade Leather Goods and Custom Monogram Bag Showcase</span>
+      </div>
+
+      <button type="button" class="btn-back-to-top" id="btn-back-to-top" aria-label="Back to top of page">
+        <span>Back to Top</span>
+        <span>↑</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Modal Backdrop -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true"></div>
+
+  <!-- Shopping Bag Drawer -->
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping Bag">
+    <div class="cart-header">
+      <h3 class="cart-title">Shopping Bag</h3>
+      <button type="button" class="modal-close-btn" id="cart-close-btn" aria-label="Close Shopping Bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="cart-shipping-banner" id="cart-shipping-banner">
+      <span class="cart-shipping-icon">✦</span>
+      <span id="cart-shipping-text">Complimentary courier on all orders across India</span>
+    </div>
+
+    <!-- Items List -->
+    <div class="cart-items-list" id="cart-items-list">
+      <!-- Populated via script.js -->
+    </div>
+
+    <!-- Cart Footer with Breakdown -->
+    <div class="cart-footer" id="cart-footer">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cart-subtotal-val">₹0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Bespoke Monogramming</span>
+        <span id="cart-emboss-total-val">Included</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Shipping &amp; Insurance</span>
+        <span style="color: var(--color-cognac); font-weight: 600;">Complimentary</span>
+      </div>
+      <div class="cart-total-line">
+        <span>Total</span>
+        <span class="cart-total-val" id="cart-final-total">₹0</span>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-checkout" id="btn-checkout">
+        Proceed to Demonstration Checkout →
+      </button>
+    </div>
+  </aside>
+
+  <!-- Product Details Modal -->
+  <div class="product-detail-modal" id="product-detail-modal" role="dialog" aria-modal="true" aria-label="Product Details">
+    <button type="button" class="modal-close-btn" id="detail-close-btn" aria-label="Close product details">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-product-grid">
+      <div class="modal-product-media" id="modal-product-media">
+        <!-- Injected via script.js -->
+      </div>
+      <div class="modal-product-content" id="modal-product-content">
+        <!-- Injected via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Demonstration Checkout Modal -->
+  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-label="Demonstration Checkout">
+    <button type="button" class="modal-close-btn" id="checkout-close-btn" aria-label="Close checkout">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Initial Form View -->
+    <div id="checkout-form-view">
+      <div class="section-meta">Demonstration Checkout</div>
+      <h3 class="section-title" style="font-size: 2rem;">Commission Review</h3>
+
+      <div class="checkout-demo-banner">
+        <strong>Academic Demonstration Notice:</strong>
+        This is a simulated college project checkout. No real payment, bank card details, or financial charges will occur.
+      </div>
+
+      <form id="checkout-form">
+        <div class="checkout-form">
+          <div class="form-group-full">
+            <label class="form-label" for="checkout-name">Full Name</label>
+            <input type="text" class="form-control" id="checkout-name" placeholder="e.g. Arjun Dev" required>
+          </div>
+          <div>
+            <label class="form-label" for="checkout-email">Email Address</label>
+            <input type="email" class="form-control" id="checkout-email" placeholder="arjun@example.com" required>
+          </div>
+          <div>
+            <label class="form-label" for="checkout-phone">Phone Number</label>
+            <input type="tel" class="form-control" id="checkout-phone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="form-group-full">
+            <label class="form-label" for="checkout-address">Delivery Address</label>
+            <input type="text" class="form-control" id="checkout-address" placeholder="Apartment, Street, Landmark" required>
+          </div>
+          <div>
+            <label class="form-label" for="checkout-city">City</label>
+            <input type="text" class="form-control" id="checkout-city" placeholder="Bengaluru" required>
+          </div>
+          <div>
+            <label class="form-label" for="checkout-pincode">Postal Pincode</label>
+            <input type="text" class="form-control" id="checkout-pincode" placeholder="560001" required>
+          </div>
+        </div>
+
+        <div class="checkout-summary-mini" id="checkout-order-summary">
+          <!-- Summary injected dynamically -->
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <button type="submit" class="btn btn-primary" style="flex-grow: 1;">
+            Place Demonstration Commission
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success Confirmation View -->
+    <div class="checkout-success-view" id="checkout-success-view">
+      <div class="order-badge-seal">AH</div>
+      <div class="section-meta">Commission Confirmed</div>
+      <h3 class="section-title" style="font-size: 2.2rem;">Order Received</h3>
+      <p style="font-size: 0.95rem; color: var(--color-charcoal); max-width: 480px;">
+        Thank you for commissioning Atelier Hide. Your personalized leather piece has been queued for hand-cutting and hot-stamping in our Bengaluru workshop.
+      </p>
+
+      <div style="margin: 1rem 0;">
+        <span style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); display: block; margin-bottom: 4px;">Demonstration Order Reference</span>
+        <span class="order-id-highlight" id="confirmed-order-id">AH-2026-8942</span>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--color-muted);">
+        Estimated Workshop Completion: 3–5 Business Days • White-Glove Hand Courier
+      </p>
+
+      <button type="button" class="btn btn-primary btn-sm" id="btn-success-close" style="margin-top: 1rem;">
+        Return to Collection
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+</body>
+</html>

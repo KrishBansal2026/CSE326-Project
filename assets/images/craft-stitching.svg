@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="stitch-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#241914" />
+      <stop offset="100%" stop-color="#150f0c" />
+    </linearGradient>
+    <linearGradient id="clam-wood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4d2f1d" />
+      <stop offset="50%" stop-color="#73472c" />
+      <stop offset="100%" stop-color="#3d2416" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#stitch-bg)" />
+  <!-- Traditional French Wooden Stitching Clam clamping leather jaws -->
+  <path d="M 120 450 L 250 180 L 350 180 L 480 450 Z" fill="url(#clam-wood)" stroke="#221208" stroke-width="2" />
+  <!-- Clamped leather panels between the wooden jaws -->
+  <rect x="270" y="70" width="60" height="180" rx="4" fill="#a9673f" stroke="#683416" stroke-width="2" />
+  <!-- Beveled and Pricked Stitching Line (Pricking Iron holes at 45 degree angle) -->
+  <line x1="300" y1="75" x2="300" y2="230" stroke="#361706" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round" />
+  <!-- Cast Saddle Stitches with Linen Thread -->
+  <line x1="300" y1="130" x2="300" y2="230" stroke="#f4efe6" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" />
+  <!-- Dual Harness Needles & Waxed Linen Thread Crossing -->
+  <!-- Left Needle -->
+  <g transform="translate(290, 125) rotate(-35)">
+    <line x1="-80" y1="0" x2="30" y2="0" stroke="#e0e4e8" stroke-width="2.2" stroke-linecap="round" filter="drop-shadow(1px 2px 3px rgba(0,0,0,0.5))" />
+    <circle cx="-75" cy="0" r="1.5" fill="#111" />
+    <!-- Waxed thread flowing out of eye -->
+    <path d="M -75 0 C -120 -40, -160 20, -200 -20" fill="none" stroke="#f4efe6" stroke-width="1.8" />
+  </g>
+  <!-- Right Needle -->
+  <g transform="translate(310, 125) rotate(40)">
+    <line x1="-30" y1="0" x2="80" y2="0" stroke="#e0e4e8" stroke-width="2.2" stroke-linecap="round" filter="drop-shadow(1px 2px 3px rgba(0,0,0,0.5))" />
+    <circle cx="75" cy="0" r="1.5" fill="#111" />
+    <!-- Waxed thread flowing out of eye -->
+    <path d="M 75 0 C 110 -30, 150 10, 190 -10" fill="none" stroke="#f4efe6" stroke-width="1.8" />
+  </g>
+  <g transform="translate(60, 420)" opacity="0.6">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" fill="#dfd6cb" letter-spacing="2">STAGE 02 — TRADITIONAL TWO-NEEDLE SADDLE STITCHING (HAND CAST)</text>
+  </g>
+</svg>

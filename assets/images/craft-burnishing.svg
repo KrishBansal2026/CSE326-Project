@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="burnish-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#211713" />
+      <stop offset="100%" stop-color="#120c09" />
+    </linearGradient>
+    <linearGradient id="ebony-slicker" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d271d" />
+      <stop offset="40%" stop-color="#24150f" />
+      <stop offset="100%" stop-color="#120905" />
+    </linearGradient>
+    <linearGradient id="wax-cake" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faeccb" />
+      <stop offset="70%" stop-color="#e3bf73" />
+      <stop offset="100%" stop-color="#a47e2f" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#burnish-bg)" />
+  <!-- Leather thick edge placed horizontally on bench -->
+  <rect x="50" y="210" width="500" height="140" rx="6" fill="#784422" stroke="#48250f" stroke-width="2" />
+  <!-- Burnished Mirror Edge (Glassy sheen along upper beveled edge) -->
+  <rect x="50" y="206" width="500" height="8" rx="4" fill="#321609" />
+  <line x1="50" y1="208" x2="500" y2="208" stroke="#ffffff" stroke-width="1.8" opacity="0.4" />
+  <!-- Pure Organic Beeswax Cake block sitting on bench -->
+  <polygon points="110,130 190,110 240,150 160,170" fill="url(#wax-cake)" stroke="#927128" stroke-width="1.5" filter="drop-shadow(3px 8px 12px rgba(0,0,0,0.5))" />
+  <polygon points="110,130 160,170 160,195 110,155" fill="#cba24d" />
+  <polygon points="160,170 240,150 240,175 160,195" fill="#a47e2f" />
+  <!-- Hand-Carved Hardwood Edge Slicker (grooved burnishing tool) -->
+  <g transform="translate(360, 160) rotate(22)" filter="drop-shadow(5px 12px 16px rgba(0,0,0,0.6))">
+    <!-- Handle -->
+    <path d="M 0 -80 C 12 -80, 18 -60, 12 -20 L 14 60 C 14 70, -14 70, -14 60 L -12 -20 C -18 -60, -12 -80, 0 -80 Z" fill="url(#ebony-slicker)" stroke="#0a0503" stroke-width="1.5" />
+    <!-- Multi-gauge Lathed Grooves for different leather weights -->
+    <ellipse cx="0" cy="5" rx="14" ry="4" fill="#0d0704" stroke="#4a3024" stroke-width="1" />
+    <ellipse cx="0" cy="20" rx="15" ry="4.5" fill="#0d0704" stroke="#4a3024" stroke-width="1" />
+    <ellipse cx="0" cy="38" rx="16" ry="5" fill="#0d0704" stroke="#4a3024" stroke-width="1" />
+  </g>
+  <g transform="translate(60, 420)" opacity="0.6">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" fill="#dfd6cb" letter-spacing="2">STAGE 03 — NATURAL BEESWAX FRICTION BURNISHING FOR A GLASS-SMOOTH SEAL</text>
+  </g>
+</svg>
